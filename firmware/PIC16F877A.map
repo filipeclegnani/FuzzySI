@@ -4,7 +4,7 @@ Linker command line:
 
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+PIC16F877A.sym --cmf=PIC16F877A.cmf -z -Q16F877A \
-  -oC:\Users\282545\AppData\Local\Temp\s6rk.6 -MPIC16F877A.map -E1 -ver=XC8 \
+  -oC:\Users\332414\AppData\Local\Temp\sbvc.6 -MPIC16F877A.map -E1 -ver=XC8 \
   -ASTACK=0110h-016fh -pstack=STACK -ACONST=00h-0FFhx32 -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -AENTRY=00h-0FFhx32 -ASTRING=00h-0FFhx32 \
   -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
@@ -740,7 +740,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 226 in file "E:\projeto-fuzzy-rpm\firmware\main.c"
+		line 226 in file "C:\Users\332414\Desktop\FyzzySI\firmware\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -948,7 +948,7 @@ Total ram usage:        8 bytes
 
  *************** function _USART_Init *****************
  Defined at:
-		line 6 in file "E:\projeto-fuzzy-rpm\firmware\usart.c"
+		line 6 in file "C:\Users\332414\Desktop\FyzzySI\firmware\usart.c"
  Parameters:    Size  Location     Type
   BaudRate        4   15[BANK1 ] long 
  Auto vars:     Size  Location     Type
@@ -1011,7 +1011,7 @@ Total ram usage:       15 bytes
 
  *************** function _TIMER0_Set *****************
  Defined at:
-		line 20 in file "E:\projeto-fuzzy-rpm\firmware\timers.c"
+		line 20 in file "C:\Users\332414\Desktop\FyzzySI\firmware\timers.c"
  Parameters:    Size  Location     Type
   contagens       1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1041,7 +1041,7 @@ Total ram usage:        1 bytes
 
  *************** function _TIMER0_Init *****************
  Defined at:
-		line 6 in file "E:\projeto-fuzzy-rpm\firmware\timers.c"
+		line 6 in file "C:\Users\332414\Desktop\FyzzySI\firmware\timers.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1071,7 +1071,7 @@ Total ram usage:        0 bytes
 
  *************** function _PWM_Init *****************
  Defined at:
-		line 5 in file "E:\projeto-fuzzy-rpm\firmware\pwm.c"
+		line 5 in file "C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1101,7 +1101,7 @@ Total ram usage:        0 bytes
 
  *************** function _PWM_DutyCycle2 *****************
  Defined at:
-		line 96 in file "E:\projeto-fuzzy-rpm\firmware\pwm.c"
+		line 96 in file "C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c"
  Parameters:    Size  Location     Type
   valor           2    0[BANK1 ] int 
  Auto vars:     Size  Location     Type
@@ -1131,7 +1131,7 @@ Total ram usage:        4 bytes
 
  *************** function _PWM_DutyCycle1 *****************
  Defined at:
-		line 64 in file "E:\projeto-fuzzy-rpm\firmware\pwm.c"
+		line 64 in file "C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c"
  Parameters:    Size  Location     Type
   valor           2    0[BANK1 ] int 
  Auto vars:     Size  Location     Type
@@ -1161,7 +1161,7 @@ Total ram usage:        4 bytes
 
  *************** function _LCD_WriteString *****************
  Defined at:
-		line 61 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 61 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
   Str             2    2[BANK1 ] PTR const unsigned char 
 		 -> STR_3(6), display(10), STR_1(17), 
@@ -1192,7 +1192,7 @@ Total ram usage:        2 bytes
 
  *************** function _LCD_WriteData *****************
  Defined at:
-		line 47 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 47 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
   Byte            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1222,7 +1222,7 @@ Total ram usage:        2 bytes
 
  *************** function _LCD_Init *****************
  Defined at:
-		line 87 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 87 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1252,7 +1252,7 @@ Total ram usage:        2 bytes
 
  *************** function _LCD_Cursor *****************
  Defined at:
-		line 10 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 10 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
   Row             1    wreg     unsigned char 
   Col             1    0[BANK1 ] unsigned char 
@@ -1283,7 +1283,7 @@ Total ram usage:        3 bytes
 
  *************** function _LCD_Clear *****************
  Defined at:
-		line 71 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 71 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1313,7 +1313,7 @@ Total ram usage:        2 bytes
 
  *************** function _LCD_WriteCmd *****************
  Defined at:
-		line 32 in file "E:\projeto-fuzzy-rpm\firmware\lcd.c"
+		line 32 in file "C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c"
  Parameters:    Size  Location     Type
   Byte            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1344,7 +1344,7 @@ Total ram usage:        2 bytes
 
  *************** function _ADC_Init *****************
  Defined at:
-		line 6 in file "E:\projeto-fuzzy-rpm\firmware\adc.c"
+		line 6 in file "C:\Users\332414\Desktop\FyzzySI\firmware\adc.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1374,7 +1374,7 @@ Total ram usage:        0 bytes
 
  *************** function _ISR *****************
  Defined at:
-		line 101 in file "E:\projeto-fuzzy-rpm\firmware\main.c"
+		line 101 in file "C:\Users\332414\Desktop\FyzzySI\firmware\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1449,7 +1449,7 @@ Total ram usage:        6 bytes
 
  *************** function i1_TIMER0_Set *****************
  Defined at:
-		line 20 in file "E:\projeto-fuzzy-rpm\firmware\timers.c"
+		line 20 in file "C:\Users\332414\Desktop\FyzzySI\firmware\timers.c"
  Parameters:    Size  Location     Type
   contagens       1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1478,7 +1478,7 @@ Total ram usage:        1 bytes
 
  *************** function i1_PWM_DutyCycle2 *****************
  Defined at:
-		line 96 in file "E:\projeto-fuzzy-rpm\firmware\pwm.c"
+		line 96 in file "C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c"
  Parameters:    Size  Location     Type
   valor           2    0[COMMON] int 
  Auto vars:     Size  Location     Type
@@ -1507,7 +1507,7 @@ Total ram usage:        4 bytes
 
  *************** function _trimf *****************
  Defined at:
-		line 59 in file "E:\projeto-fuzzy-rpm\firmware\main.c"
+		line 59 in file "C:\Users\332414\Desktop\FyzzySI\firmware\main.c"
  Parameters:    Size  Location     Type
   x               3   32[BANK0 ] float 
   a               3   35[BANK0 ] float 
@@ -1673,7 +1673,7 @@ Total ram usage:       13 bytes
 
  *************** function _send *****************
  Defined at:
-		line 76 in file "E:\projeto-fuzzy-rpm\firmware\main.c"
+		line 76 in file "C:\Users\332414\Desktop\FyzzySI\firmware\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1864,7 +1864,7 @@ Total ram usage:        8 bytes
 
  *************** function _USART_ReceiveChar *****************
  Defined at:
-		line 63 in file "E:\projeto-fuzzy-rpm\firmware\usart.c"
+		line 63 in file "C:\Users\332414\Desktop\FyzzySI\firmware\usart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1894,7 +1894,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_WriteString *****************
  Defined at:
-		line 52 in file "E:\projeto-fuzzy-rpm\firmware\usart.c"
+		line 52 in file "C:\Users\332414\Desktop\FyzzySI\firmware\usart.c"
  Parameters:    Size  Location     Type
   str             1    wreg     PTR const unsigned char 
 		 -> STR_4(40), 
@@ -1926,7 +1926,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_WriteChar *****************
  Defined at:
-		line 44 in file "E:\projeto-fuzzy-rpm\firmware\usart.c"
+		line 44 in file "C:\Users\332414\Desktop\FyzzySI\firmware\usart.c"
  Parameters:    Size  Location     Type
   byte            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1958,6 +1958,11 @@ Total ram usage:        1 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
+C:\Users\332414\Desktop\FyzzySI\firmware\adc.c
+		_ADC_Init      		CODE           	089D	0000	18
+
+C:\Users\332414\Desktop\FyzzySI\firmware\adc.c estimated size: 18
+
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftneg.c
 		___ftneg       		CODE           	0878	0000	10
 
@@ -1978,12 +1983,6 @@ C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\float.c
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\float.c estimated size: 104
 
-E:\projeto-fuzzy-rpm\firmware\timers.c
-		_TIMER0_Set    		CODE           	0868	0000	8
-		_TIMER0_Init   		CODE           	0882	0000	11
-
-E:\projeto-fuzzy-rpm\firmware\timers.c estimated size: 19
-
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c
 		___lwmod       		CODE           	0A89	0000	54
 
@@ -1994,30 +1993,42 @@ C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c estimated size: 37
 
-E:\projeto-fuzzy-rpm\firmware\pwm.c
-		_PWM_DutyCycle1		CODE           	0981	0000	33
-		_PWM_DutyCycle2		CODE           	09A2	0000	33
-		_PWM_Init      		CODE           	09E6	0000	36
-
-E:\projeto-fuzzy-rpm\firmware\pwm.c estimated size: 102
-
-E:\projeto-fuzzy-rpm\firmware\usart.c
+C:\Users\332414\Desktop\FyzzySI\firmware\usart.c
 		_USART_WriteCha		CODE           	0860	0000	8
 		_USART_ReceiveC		CODE           	08F1	0000	24
 		_USART_WriteStr		CODE           	0924	0000	28
 		_USART_Init    		CODE           	0AFF	0000	73
 
-E:\projeto-fuzzy-rpm\firmware\usart.c estimated size: 133
+C:\Users\332414\Desktop\FyzzySI\firmware\usart.c estimated size: 133
 
-E:\projeto-fuzzy-rpm\firmware\adc.c
-		_ADC_Init      		CODE           	089D	0000	18
+C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c
+		_LCD_Init      		CODE           	0C0D	0000	107
+		_LCD_WriteStrin		CODE           	0A58	0000	49
+		_LCD_Clear     		CODE           	0A2F	0000	41
+		_LCD_Cursor    		CODE           	0940	0000	32
+		_LCD_WriteCmd  		CODE           	08C3	0000	23
+		_LCD_WriteData 		CODE           	08DA	0000	23
 
-E:\projeto-fuzzy-rpm\firmware\adc.c estimated size: 18
+C:\Users\332414\Desktop\FyzzySI\firmware\lcd.c estimated size: 275
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftmul.c
 		___ftmul       		CODE           	0E4D	0000	211
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftmul.c estimated size: 211
+
+C:\Users\332414\Desktop\FyzzySI\firmware\timers.c
+		_TIMER0_Set    		CODE           	0868	0000	8
+		_TIMER0_Init   		CODE           	0882	0000	11
+
+C:\Users\332414\Desktop\FyzzySI\firmware\timers.c estimated size: 19
+
+C:\Users\332414\Desktop\FyzzySI\firmware\main.c
+		_ISR           		CODE           	0037	0000	919
+		_trimf         		CODE           	0585	0000	292
+		_main          		CODE           	0F20	0000	224
+		_send          		CODE           	07B2	0000	74
+
+C:\Users\332414\Desktop\FyzzySI\firmware\main.c estimated size: 1509
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c
 		___lwdiv       		CODE           	0ABF	0000	64
@@ -2034,16 +2045,6 @@ shared
 		__initializatio		CODE           	0015	0000	30
 
 shared estimated size: 192
-
-E:\projeto-fuzzy-rpm\firmware\lcd.c
-		_LCD_Init      		CODE           	0C0D	0000	107
-		_LCD_WriteStrin		CODE           	0A58	0000	49
-		_LCD_Clear     		CODE           	0A2F	0000	41
-		_LCD_Cursor    		CODE           	0940	0000	32
-		_LCD_WriteCmd  		CODE           	08C3	0000	23
-		_LCD_WriteData 		CODE           	08DA	0000	23
-
-E:\projeto-fuzzy-rpm\firmware\lcd.c estimated size: 275
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\aldiv.c
 		___aldiv       		CODE           	0D06	0000	143
@@ -2065,14 +2066,6 @@ C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftadd.c
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftadd.c estimated size: 265
 
-E:\projeto-fuzzy-rpm\firmware\main.c
-		_ISR           		CODE           	0037	0000	919
-		_trimf         		CODE           	0585	0000	292
-		_main          		CODE           	0F20	0000	224
-		_send          		CODE           	07B2	0000	74
-
-E:\projeto-fuzzy-rpm\firmware\main.c estimated size: 1509
-
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 		___ftdiv       		CODE           	0D95	0000	184
 
@@ -2082,6 +2075,13 @@ C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwtoft.c
 		___lwtoft      		CODE           	08AF	0000	20
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwtoft.c estimated size: 20
+
+C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c
+		_PWM_DutyCycle1		CODE           	0981	0000	33
+		_PWM_DutyCycle2		CODE           	09A2	0000	33
+		_PWM_Init      		CODE           	09E6	0000	36
+
+C:\Users\332414\Desktop\FyzzySI\firmware\pwm.c estimated size: 102
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\isdigit.c
 		_isdigit       		CODE           	088D	0000	16

@@ -1,1 +1,0 @@
- i2c.d  i2c.p1:  E:/projeto-fuzzy-rpm/firmware/i2c.c E:/projeto-fuzzy-rpm/firmware/config.h E:/projeto-fuzzy-rpm/firmware/i2c.h

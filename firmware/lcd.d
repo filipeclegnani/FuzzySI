@@ -1,1 +1,0 @@
- lcd.d  lcd.p1:  E:/projeto-fuzzy-rpm/firmware/lcd.c E:/projeto-fuzzy-rpm/firmware/config.h E:/projeto-fuzzy-rpm/firmware/lcd.h
