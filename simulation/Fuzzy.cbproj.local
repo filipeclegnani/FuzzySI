@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/10/25 00:51:36.000.625,=C:\Desenvolvimento\Embarcadero\Unit1.cpp</Transaction>
+    <Transaction>2020/10/25 00:51:36.000.468,=C:\Desenvolvimento\Embarcadero\Project1PCH1.h</Transaction>
+    <Transaction>2020/10/25 00:53:31.000.795,C:\Desenvolvimento\Embarcadero\Disciplinas\Inteligência Artificial\Fuzzy\UFuzzy.cpp=C:\Desenvolvimento\Embarcadero\Unit1.cpp</Transaction>
+    <Transaction>2020/10/25 00:53:31.000.795,C:\Desenvolvimento\Embarcadero\Disciplinas\Inteligência Artificial\Fuzzy\UFuzzy.dfm=C:\Desenvolvimento\Embarcadero\Unit1.dfm</Transaction>
+    <Transaction>2020/10/25 00:53:31.000.795,C:\Desenvolvimento\Embarcadero\Disciplinas\Inteligência Artificial\Fuzzy\UFuzzy.h=C:\Desenvolvimento\Embarcadero\Unit1.h</Transaction>
+    <Transaction>2020/10/25 00:53:51.000.537,C:\Desenvolvimento\Embarcadero\Disciplinas\Inteligência Artificial\Fuzzy\FuzzyPCH1.h=C:\Desenvolvimento\Embarcadero\Project1PCH1.h</Transaction>
+    <Transaction>2020/10/25 00:53:56.000.826,C:\Desenvolvimento\Embarcadero\Disciplinas\Inteligência Artificial\Fuzzy\Fuzzy.cbproj=C:\Desenvolvimento\Embarcadero\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

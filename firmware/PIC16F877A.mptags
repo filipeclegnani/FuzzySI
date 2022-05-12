@@ -1,0 +1,106 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ADCResult	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.c	50;"	l	line:50
+ADCResult	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	19;"	v	line:19
+ADC_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.h	3;"	d	line:3
+ADC_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.c	6;"	f	line:6
+ADC_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.h	6;"	p	line:6	signature:()
+ADC_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.c	48;"	f	line:48	signature:(unsigned int channel)
+ADC_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.h	7;"	p	line:7	signature:(unsigned int channel)
+CONFIG_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\config.h	2;"	d	line:2
+EEPROM_Erase	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.c	57;"	f	line:57
+EEPROM_Erase	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.h	7;"	p	line:7	signature:()
+EEPROM_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.h	3;"	d	line:3
+EEPROM_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.c	5;"	f	line:5	signature:(unsigned char Address)
+EEPROM_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.h	5;"	p	line:5	signature:(unsigned char)
+EEPROM_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.c	23;"	f	line:23	signature:(unsigned char Address, unsigned char Byte)
+EEPROM_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.h	6;"	p	line:6	signature:(unsigned char, unsigned char)
+EN::PORTEbits.RE1	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	7;"	d	line:7	file:
+EN::PORTEbits.RE1	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	9;"	d	line:9
+I2C_ACK	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	102;"	f	line:102	signature:(void)
+I2C_ACK	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	12;"	p	line:12	signature:(void)
+I2C_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	2;"	d	line:2
+I2C_Idle	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	42;"	f	line:42	signature:(void)
+I2C_Idle	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	6;"	p	line:6	signature:(void)
+I2C_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	6;"	f	line:6	signature:(void)
+I2C_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	5;"	p	line:5	signature:(void)
+I2C_NACK	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	112;"	f	line:112	signature:(void)
+I2C_NACK	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	13;"	p	line:13	signature:(void)
+I2C_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	80;"	f	line:80	signature:(void)
+I2C_Read	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	10;"	p	line:10	signature:(void)
+I2C_Restart	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	60;"	f	line:60	signature:(void)
+I2C_Restart	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	8;"	p	line:8	signature:(void)
+I2C_Start	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	50;"	f	line:50	signature:(void)
+I2C_Start	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	7;"	p	line:7	signature:(void)
+I2C_Stop	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	92;"	f	line:92	signature:(void)
+I2C_Stop	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	11;"	p	line:11	signature:(void)
+I2C_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c	70;"	f	line:70	signature:(unsigned char Byte)
+I2C_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h	9;"	p	line:9	signature:(unsigned char)
+ISR	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	34;"	f	line:34	signature:(void)
+LCDBus::PORTD	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	5;"	d	line:5	file:
+LCDBus::PORTD	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	7;"	d	line:7
+LCD_Clear	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	71;"	f	line:71
+LCD_Clear	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	16;"	p	line:16	signature:()
+LCD_Cursor	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	10;"	f	line:10	signature:(unsigned char Row, unsigned char Col)
+LCD_Cursor	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	12;"	p	line:12	signature:(unsigned char, unsigned char)
+LCD_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	3;"	d	line:3
+LCD_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	87;"	f	line:87
+LCD_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	17;"	p	line:17	signature:()
+LCD_WriteCmd	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	32;"	f	line:32	signature:(unsigned char Byte)
+LCD_WriteCmd	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	13;"	p	line:13	signature:(unsigned char)
+LCD_WriteData	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	47;"	f	line:47	signature:(unsigned char Byte)
+LCD_WriteData	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	14;"	p	line:14	signature:(unsigned char)
+LCD_WriteString	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	61;"	f	line:61	signature:(const char *Str)
+LCD_WriteString	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	15;"	p	line:15	signature:(const char *)
+PWM_DutyCycle1	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.c	64;"	f	line:64	signature:(int valor)
+PWM_DutyCycle1	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.h	6;"	p	line:6	signature:(int)
+PWM_DutyCycle2	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.c	96;"	f	line:96	signature:(int valor)
+PWM_DutyCycle2	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.h	7;"	p	line:7	signature:(int)
+PWM_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.h	2;"	d	line:2
+PWM_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.c	5;"	f	line:5
+PWM_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.h	5;"	p	line:5	signature:()
+RS::PORTEbits.RE0	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c	6;"	d	line:6	file:
+RS::PORTEbits.RE0	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h	8;"	d	line:8
+SPI_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.h	2;"	d	line:2
+SPI_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.c	5;"	f	line:5
+SPI_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.h	5;"	p	line:5	signature:(void)
+SPI_Wait	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.c	42;"	f	line:42
+SPI_Wait	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.h	7;"	p	line:7	signature:()
+SPI_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.c	31;"	f	line:31	signature:(unsigned char byte)
+SPI_Write	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.h	6;"	p	line:6	signature:(unsigned char)
+TIMER0_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.c	6;"	f	line:6
+TIMER0_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h	5;"	p	line:5	signature:()
+TIMER0_Set	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.c	20;"	f	line:20	signature:(unsigned char contagens)
+TIMER0_Set	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h	6;"	p	line:6	signature:(unsigned char)
+TIMER1_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.c	27;"	f	line:27
+TIMER1_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h	7;"	p	line:7	signature:()
+TIMER1_Set	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.c	42;"	f	line:42	signature:(unsigned short contagens)
+TIMER1_Set	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h	8;"	p	line:8	signature:(unsigned short)
+TIMERS_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h	2;"	d	line:2
+USART_H	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h	3;"	d	line:3
+USART_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c	6;"	f	line:6	signature:(long BaudRate)
+USART_Init	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h	6;"	p	line:6	signature:(long)
+USART_ReceiveChar	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c	63;"	f	line:63	signature:(void)
+USART_ReceiveChar	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h	9;"	p	line:9	signature:(void)
+USART_WriteChar	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c	44;"	f	line:44	signature:(unsigned char byte)
+USART_WriteChar	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h	7;"	p	line:7	signature:(unsigned char)
+USART_WriteString	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c	52;"	f	line:52	signature:(const char *str)
+USART_WriteString	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h	8;"	p	line:8	signature:(const char *)
+_XTAL_FREQ::18432000	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\config.h	20;"	d	line:20
+a	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.c	60;"	l	line:60
+byte	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c	65;"	l	line:65
+contador_rb6	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	30;"	v	line:30
+contagens_tm0	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	29;"	v	line:29
+display	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	23;"	v	line:23
+main	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	170;"	f	line:170	signature:(void)
+pulsos	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	25;"	v	line:25
+rpm	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	26;"	v	line:26
+status	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	24;"	v	line:24
+temp_lida	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	20;"	v	line:20
+tempo_rb6	C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c	31;"	v	line:31

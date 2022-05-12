@@ -1,0 +1,1 @@
+ usart.d  usart.p1:  E:/projeto-fuzzy-rpm/firmware/usart.c E:/projeto-fuzzy-rpm/firmware/config.h E:/projeto-fuzzy-rpm/firmware/usart.h

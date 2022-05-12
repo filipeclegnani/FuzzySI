@@ -1,0 +1,1 @@
+ spi.d  spi.p1:  E:/projeto-fuzzy-rpm/firmware/spi.c E:/projeto-fuzzy-rpm/firmware/spi.h E:/projeto-fuzzy-rpm/firmware/config.h

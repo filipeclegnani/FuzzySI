@@ -1,0 +1,1 @@
+ pwm.d  pwm.p1:  E:/projeto-fuzzy-rpm/firmware/pwm.c E:/projeto-fuzzy-rpm/firmware/pwm.h E:/projeto-fuzzy-rpm/firmware/config.h

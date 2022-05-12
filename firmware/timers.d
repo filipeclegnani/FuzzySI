@@ -1,0 +1,1 @@
+ timers.d  timers.p1:  E:/projeto-fuzzy-rpm/firmware/timers.c E:/projeto-fuzzy-rpm/firmware/timers.h E:/projeto-fuzzy-rpm/firmware/config.h
