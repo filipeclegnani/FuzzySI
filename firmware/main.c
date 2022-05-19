@@ -1,17 +1,17 @@
 #define PASSO_PWM 100
-#define MIN(a,b) (((a)<(b))?(a):(b))
-#define MAX(a,b) (((a)>(b))?(a):(b))
-#define FUZZY_AND(a,b) (((a)<(b))?(a):(b))
-#define FUZZY_OR(a,b) (((a)>(b))?(a):(b))
+#define MIN(a,b) (((a) < (b)) ? (a) : (b))
+#define MAX(a,b) (((a) > (b)) ? (a) : (b))
+#define FUZZY_AND(a,b) (((a) < (b)) ? (a) : (b))
+#define FUZZY_OR(a,b) (((a) > (b)) ? (a) : (b))
 
-// Declaração das configurações e funcionalidades do PIC.
+// Declaraï¿½ï¿½o das configuraï¿½ï¿½es e funcionalidades do PIC.
 #include "config.h"
 
-// Declaração das bibliotecas padrão da linguagem C.
+// Declaraï¿½ï¿½o das bibliotecas padrï¿½o da linguagem C.
 #include <stdio.h>
-#include <stdlib.h>		// comando ftoa().
+#include <stdlib.h> // comando ftoa().
 
-// Declaração das bibliotecas com as configurações e funcionalidades do PIC.
+// Declaraï¿½ï¿½o das bibliotecas com as configuraï¿½ï¿½es e funcionalidades do PIC.
 #include "usart.h"
 #include "adc.h"
 #include "timers.h"
@@ -21,11 +21,11 @@
 #include "eeprom.h"
 #include "pwm.h"
 
-//Variáveis Globais de Controle.
+// Variï¿½veis Globais de Controle.
 unsigned short ADCResult = 0;
 float temp_lida = 0;
 
-//Configurações para formatação de dados de saída.
+// Configuraï¿½ï¿½es para formataï¿½ï¿½o de dados de saï¿½da.
 unsigned char display[10];
 unsigned char buffer[7];
 unsigned char receivedBuffer[7];
@@ -54,121 +54,84 @@ float variacao_fuzzy = 0;
 
 unsigned int pwm = 0;
 
-
-
-float trimf(float x, float a, float b, float c)
+float triangular(float x, float a, float b, float c)
 {
-    float ua = 0;
+	float ua = 0;
 
-    if (x <= a)
-        ua = 0;
-    else if ((a < x) && (x <= b))
-        ua = ((x - a) / (b - a));
-    else if ((b < x) && (x <= c))
-        ua = ((x - c) / (b - c));
-    else if (x > c)
-        ua = 0;
+	if (x <= a)
+		ua = 0;
+	else if ((a < x) && (x <= b))
+		ua = ((x - a) / (b - a));
+	else if ((b < x) && (x <= c))
+		ua = ((x - c) / (b - c));
+	else if (x > c)
+		ua = 0;
 
-    return(ua);
+	return (ua);
 }
 
+//---------------------------------------------------------------------
 
-void send()
+float trapezoidal(float x, float a, float b, float c, float d)
 {
+	float ua = 0;
 
-  //Formatação do Pacote de dados.
-  buffer[0] = '#';
-  buffer[1] = '$';
-  buffer[2] = ':';
+	if (x <= a)
+		ua = 0;
+	else if ((a < x) && (x <= b))
+		ua = ((x - a) / (b - a));
+	else if ((b <= x) && (x <= c))
+		ua = 1;
+	else if ((c < x) && (x <= d))
+		ua = ((d - x) / (d - c));
+	else if (x > d)
+		ua = 0;
 
-  // Medição
-  buffer[3] = (rpm >> 8) & 0xFF;
-  buffer[4] = rpm & 0xFF;
-  buffer[5] = 0;
-
-  unsigned char checksum = 0x00;
-  for (unsigned char index = 0; index < 6; index++)
-  {
-    USART_WriteChar(buffer[index]);
-    checksum ^= buffer[index];
-  }
-  buffer[6] = checksum;
-  USART_WriteChar(buffer[6]);
+	return (ua);
 }
-
 
 //-----------------------------------------------------------------------------
 void interrupt ISR(void)
 {
-	// Tratamento da interrupção do buffer de recepção.
+	// Tratamento da interrupï¿½ï¿½o do buffer de recepï¿½ï¿½o.
 	if (PIR1bits.RCIF)
 	{
-		unsigned char byte = USART_ReceiveChar();
-		if (byte == '#')
-		{
-			receiveIndex = 0;
-		} else {
-			receiveIndex++;
-		}
-		receivedBuffer[receiveIndex] = byte;
 
-		if (receiveIndex >= 6) {
-			receiveIndex = 0;
-			
-			if (receivedBuffer[1] == 'A' || receivedBuffer[2] == 'A' || receivedBuffer[3] == 'A') {
-				send();
-			} else if (receivedBuffer[0] == '#' && receivedBuffer[1] == '$' && receivedBuffer[2] == ':') {
-				unsigned char checksum = 0x00;
-				for (unsigned char index = 0; index < 6; index++) {
-					checksum ^= receivedBuffer[index];
-				}
-
-				if (receivedBuffer[6] == checksum) {
-					setpoint = (receivedBuffer[3] << 8) + (receivedBuffer[4]);
-				}
-
-
-
-			}
-			
-
-		}
-
-		// Flag de status da Interrupção do buffer de recepção da USART.
+		// Flag de status da Interrupï¿½ï¿½o do buffer de recepï¿½ï¿½o da USART.
 		PIR1bits.RCIF = 0;
 	}
 
-	// Tratamento da interrupção do conversor A/D.
+	// Tratamento da interrupï¿½ï¿½o do conversor A/D.
 	if (PIR1bits.ADIF)
 	{
-		// Caso a interrupção seja ativada a manipulação dos dados pode ser feita aqui!	
+		// Caso a interrupï¿½ï¿½o seja ativada a manipulaï¿½ï¿½o dos dados pode ser feita aqui!
 
-		// Limpa a flag da interrupção do conversor A/D.
-		PIR1bits.ADIF = 0;	
+		// Limpa a flag da interrupï¿½ï¿½o do conversor A/D.
+		PIR1bits.ADIF = 0;
 	}
 
-	// Tratamento da interrupção do Timer0.
-	// Controle da Interrupção do TIMER0.
+	// Tratamento da interrupï¿½ï¿½o do Timer0.
+	// Controle da Interrupï¿½ï¿½o do TIMER0.
 	if (INTCONbits.T0IF)
 	{
 		// Carrega o valor equivalente a contagens de 1ms.
 		TIMER0_Set(238);
 
-		// Controle do número de contagens de tempo.
-		if (contagens_tm0 < 499)		// (n-1) n=10ms, n=20ms, n=500ms
-		{	
-			// Variável de controle/incremento do período de tempo.  	
+		// Controle do nï¿½mero de contagens de tempo.
+		if (contagens_tm0 < 499) // (n-1) n=10ms, n=20ms, n=500ms
+		{
+			// Variï¿½vel de controle/incremento do perï¿½odo de tempo.
 			contagens_tm0++;
 
-     		// Variáveis de controle (nível alto).
+			// Variï¿½veis de controle (nï¿½vel alto).
 			PORTBbits.RB6 = 1;
 		}
 		else
 		{
-			// Variável de controle do período de tempo.
+			// Variï¿½vel de controle do perï¿½odo de tempo.
 			contagens_tm0 = 0;
 
-			// Cálculo das rotações por minuto.
+			// Cï¿½lculo das rotaï¿½ï¿½es por minuto.
 			pulsos = (TMR1H << 8) + TMR1L;
 			rpm = ((pulsos / 7.0) * 120);
 
@@ -176,26 +139,13 @@ void interrupt ISR(void)
 			erro_atual = setpoint - rpm;
 			delta = erro_atual - erro_anterior;
 
-			fuzzy_erro = 1 - trimf(erro_atual, -9900, 0, 9900);
-			fuzzy_delta = 1 - trimf(delta, -9900, 0, 9900);
-
-			fuzzy = FUZZY_OR(fuzzy_erro, fuzzy_delta);
-
-            variacao_fuzzy = PASSO_PWM * (erro_atual > 0 ? 1 : -1) * fuzzy;
-
-			if (ligado) {
-				pwm = MAX(MIN(pwm + (int) variacao_fuzzy, 1023), 0);
-			} else {
-				pwm = 0;
-			}
-            
-			PWM_DutyCycle2(pwm);
+			PWM_DutyCycle2(1024);
 
 			// Limpa registrador para nova contagem.
 			TMR1L = 0x00;
 			TMR1H = 0x00;
 
-			// Variáveis de controle (nível baixo).
+			// Variï¿½veis de controle (nï¿½vel baixo).
 			PORTBbits.RB6 = 0;
 		}
 
@@ -203,89 +153,89 @@ void interrupt ISR(void)
 		INTCONbits.T0IF = 0;
 	}
 
-	// Tratamento da interrupção do Timer1.
-	if (PIR1bits.TMR1IF) 
+	// Tratamento da interrupï¿½ï¿½o do Timer1.
+	if (PIR1bits.TMR1IF)
 	{
-		// Caso a interrupção seja ativada a manipulação dos dados pode ser feita aqui!	
+		// Caso a interrupï¿½ï¿½o seja ativada a manipulaï¿½ï¿½o dos dados pode ser feita aqui!
 
 		// Resetar a flag do Timer1 para uma nova contagem.
-        PIR1bits.TMR1IF = 0;		
+		PIR1bits.TMR1IF = 0;
 	}
 
-	// Tratamento da interrupção da SPI.
-	if (PIR1bits.SSPIF) 
+	// Tratamento da interrupï¿½ï¿½o da SPI.
+	if (PIR1bits.SSPIF)
 	{
-		// Caso a interrupção seja ativada a manipulação dos dados pode ser feita aqui!	
+		// Caso a interrupï¿½ï¿½o seja ativada a manipulaï¿½ï¿½o dos dados pode ser feita aqui!
 
 		// Resetar a flag do SPI para uma nova contagem.
-        PIR1bits.SSPIF = 0;		
+		PIR1bits.SSPIF = 0;
 	}
 }
 
 //-----------------------------------------------------------------------------
 void main(void)
 {
-    TRISA = 0b00000001;		// Configuração dos canais analógicos do PORTA.
-    PORTA = 0b00000001;  	// Inicialização dos canais analógicos do PORTA.
-    TRISB = 0b00000000;		// Configuração das entradas/saídas do PORTB (RB4 e RB5 PWM).
-    PORTB = 0b00000000;  	// Inicialização das entradas/saídas do PORTB.
-	TRISC = 0b10000001;		// Configuração do PORTC - pinos RC0(TIMER), RC7(RX) e RC6(TX).
-    PORTC = 0b11000000; 	// Inicialização dos pinos RX e TX em nível alto (Modo IDLE).
-    TRISD = 0b00000000;		// Configuração das entradas/saídas do PORTD.		
-    PORTD = 0b00000000;  	// Inicialização das das entradas/saídas do PORTD.
-    TRISE = 0b00000000;		// Configuração dos canais analógicos do PORTE.
-    PORTE = 0b00000000;  	// Inicialização dos canais analógicos do PORTE.
+	TRISA = 0b00000001; // Configuraï¿½ï¿½o dos canais analï¿½gicos do PORTA.
+	PORTA = 0b00000001; // Inicializaï¿½ï¿½o dos canais analï¿½gicos do PORTA.
+	TRISB = 0b00000000; // Configuraï¿½ï¿½o das entradas/saï¿½das do PORTB (RB4 e RB5 PWM).
+	PORTB = 0b00000000; // Inicializaï¿½ï¿½o das entradas/saï¿½das do PORTB.
+	TRISC = 0b10000001; // Configuraï¿½ï¿½o do PORTC - pinos RC0(TIMER), RC7(RX) e RC6(TX).
+	PORTC = 0b11000000; // Inicializaï¿½ï¿½o dos pinos RX e TX em nï¿½vel alto (Modo IDLE).
+	TRISD = 0b00000000; // Configuraï¿½ï¿½o das entradas/saï¿½das do PORTD.
+	PORTD = 0b00000000; // Inicializaï¿½ï¿½o das das entradas/saï¿½das do PORTD.
+	TRISE = 0b00000000; // Configuraï¿½ï¿½o dos canais analï¿½gicos do PORTE.
+	PORTE = 0b00000000; // Inicializaï¿½ï¿½o dos canais analï¿½gicos do PORTE.
 
-	// Configurações do TIMER1 para contagem de pulsos externos.
+	// Configuraï¿½ï¿½es do TIMER1 para contagem de pulsos externos.
 	T1CON = 0x03;
 	TMR1L = 0x00;
 	TMR1H = 0x00;
-	
-	// Inicialização dos periféricos do microcontrolador.
-	USART_Init(115200);		// Inicialização do módulo USART.
-	TIMER0_Init();			// Inicialização do módulo do Timer0.
-	ADC_Init();				// Inicialização do módulo do conversor A/D.
-	PWM_Init();	 			// 1.125khz, prescaler 16, 1024 passos.
-	LCD_Init();				// Inicialização do LCD.
-	
-	// Ativação das interrupções do microcontrolador.
-	INTCONbits.PEIE	= 1;	// Habilita Interrupção de Periféricos do Microcontrolador.
-	INTCONbits.GIE	= 1;	// Habilita Interrupção Global.
+
+	// Inicializaï¿½ï¿½o dos perifï¿½ricos do microcontrolador.
+	USART_Init(115200); // Inicializaï¿½ï¿½o do mï¿½dulo USART.
+	TIMER0_Init();		// Inicializaï¿½ï¿½o do mï¿½dulo do Timer0.
+	ADC_Init();			// Inicializaï¿½ï¿½o do mï¿½dulo do conversor A/D.
+	PWM_Init();			// 1.125khz, prescaler 16, 1024 passos.
+	LCD_Init();			// Inicializaï¿½ï¿½o do LCD.
+
+	// Ativaï¿½ï¿½o das interrupï¿½ï¿½es do microcontrolador.
+	INTCONbits.PEIE = 1; // Habilita Interrupï¿½ï¿½o de Perifï¿½ricos do Microcontrolador.
+	INTCONbits.GIE = 1;	 // Habilita Interrupï¿½ï¿½o Global.
 
 	// Rotinas do USART.
- 	// USART_WriteString("Inicializando o PIC16F877A\n\r");
- 	// USART_WriteString("USART: 115.200bps\n\r");
+	// USART_WriteString("Inicializando o PIC16F877A\n\r");
+	// USART_WriteString("USART: 115.200bps\n\r");
 
 	// Rotinas do LCD.
-	LCD_Init();								// Inicialização do LCD.
-	LCD_Cursor(0,0);						// Posicionamento da string na linha 0 e coluna 0;
-	LCD_WriteString("Inicializando...");	// Escrita da string no LCD.
+	LCD_Init();							 // Inicializaï¿½ï¿½o do LCD.
+	LCD_Cursor(0, 0);					 // Posicionamento da string na linha 0 e coluna 0;
+	LCD_WriteString("Inicializando..."); // Escrita da string no LCD.
 
-	// Inicia os módulos PWM desligados.
+	// Inicia os mï¿½dulos PWM desligados.
 	PWM_DutyCycle1(0);
 	PWM_DutyCycle2(0);
 
 	// Seta o TIMER 0 para estouro de 1 em 1ms.
 	TIMER0_Set(238);
 
-	// Delay para estabilização.
+	// Delay para estabilizaï¿½ï¿½o.
 	__delay_ms(1000);
 
-	// Laço principal do firmware.
-	while(1)
+	// Laï¿½o principal do firmware.
+	while (1)
 	{
-		// Formata os dados de rotação para apresentação.
-		sprintf(display,"%04d", rpm);
+		// Formata os dados de rotaï¿½ï¿½o para apresentaï¿½ï¿½o.
+		sprintf(display, "%04d", rpm);
 
-		// Apresenta as informações na USART.
-		//USART_WriteString(display);
- 		//USART_WriteString("\n\r");
+		// Apresenta as informaï¿½ï¿½es na USART.
+		// USART_WriteString(display);
+		// USART_WriteString("\n\r");
 
-     	// Apresenta as informações no LCD.
+		// Apresenta as informaï¿½ï¿½es no LCD.
 		LCD_Clear();
-		LCD_Cursor(0,0);
+		LCD_Cursor(0, 0);
 		LCD_WriteString("RPM: ");
-		LCD_Cursor(0,6);
+		LCD_Cursor(0, 6);
 		LCD_WriteString(display);
 
 		__delay_ms(200);
