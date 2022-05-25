@@ -1,1 +1,1 @@
- spi.d  spi.p1:  C:/Users/332414/Desktop/FyzzySI/firmware/spi.c C:/Users/332414/Desktop/FyzzySI/firmware/config.h C:/Users/332414/Desktop/FyzzySI/firmware/spi.h
+ spi.d  spi.p1:  C:/Users/332414/Desktop/FuzzySI/firmware/spi.c C:/Users/332414/Desktop/FuzzySI/firmware/config.h C:/Users/332414/Desktop/FuzzySI/firmware/spi.h

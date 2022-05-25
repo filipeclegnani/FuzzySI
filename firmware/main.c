@@ -43,16 +43,16 @@ unsigned int contador_rb6 = 0;
 unsigned int tempo_rb6 = 0;
 
 unsigned int setpoint = 0;
+
 int erro_atual = 0;
-int erro_anterior = 0;
-int delta = 0;
 
-float fuzzy_erro = 0;
-float fuzzy_delta = 0;
-float fuzzy = 0;
-float variacao_fuzzy = 0;
 
-unsigned int pwm = 0;
+
+
+
+
+
+
 
 float triangular(float x, float a, float b, float c)
 {
@@ -135,9 +135,9 @@ void interrupt ISR(void)
 			pulsos = (TMR1H << 8) + TMR1L;
 			rpm = ((pulsos / 7.0) * 120);
 
-			erro_anterior = erro_atual;
+
 			erro_atual = setpoint - rpm;
-			delta = erro_atual - erro_anterior;
+
 
 			PWM_DutyCycle2(1024);
 
