@@ -27,8 +27,6 @@ float temp_lida = 0;
 
 // Configuraï¿½ï¿½es para formataï¿½ï¿½o de dados de saï¿½da.
 unsigned char display[10];
-unsigned char buffer[7];
-unsigned char receivedBuffer[7];
 
 int receiveIndex = 0;
 
@@ -42,14 +40,25 @@ unsigned int contagens_tm0 = 0;
 unsigned int contador_rb6 = 0;
 unsigned int tempo_rb6 = 0;
 
-unsigned int setpoint = 0;
+unsigned int setpoint = 3308;
 
 int erro_atual = 0;
 
 
 
 
-
+void clearDisplay(){
+	display[0] = 0;
+	display[1] = 0;
+	display[2] = 0;
+	display[3] = 0;
+	display[4] = 0;
+	display[5] = 0;
+	display[6] = 0;
+	display[7] = 0;
+	display[8] = 0;
+	display[9] = 0;
+}	
 
 
 
@@ -88,6 +97,35 @@ float trapezoidal(float x, float a, float b, float c, float d)
 		ua = 0;
 
 	return (ua);
+}
+
+void fuzzy(){
+	// fuzzyfica 	
+	float aceleraM = trapezoidal(erro_atual, -4000, -4300, -6000, -6000);
+	float acelera  = trapezoidal(erro_atual, -80, -200, -3900, -4200);
+	float mantem   = triangular (erro_atual, -100, -0, 100);
+	float freia    = trapezoidal(erro_atual, 80, 200, 3900, 4200);
+	float freiaM   = trapezoidal(erro_atual, 4000, 4300, 6000, 6000);
+	// operador OR(max), Implicação e Agragação
+	float maior = MAX(MAX(MAX(MAX(	// seleciona o maior número
+		freiaM>.1?.1:freiaM,		// maxiomo 0.1
+		freia>.25?.25:freia),		// maximo .25
+		mantem>0.5?0.5:mantem),		// maximo .5
+		acelera>.75?.75:acelera),	// maximo .75
+		aceleraM);					// maximo 1
+	// 
+	// 
+	// Defuzzyficacao
+	PWM_DutyCycle2((int)(maior*1023));/*
+	LCD_Clear();
+	LCD_Cursor(0, 0);
+	clearDisplay();
+	itoa((int)(erro_atual), display, 10);
+	LCD_WriteString(display);
+	LCD_Cursor(1, 0);
+	clearDisplay();
+	itoa((int)(maior*1023), display, 10);
+	LCD_WriteString(display);*/
 }
 
 //-----------------------------------------------------------------------------
@@ -137,9 +175,8 @@ void interrupt ISR(void)
 
 
 			erro_atual = setpoint - rpm;
+			fuzzy();
 
-
-			PWM_DutyCycle2(1024);
 
 			// Limpa registrador para nova contagem.
 			TMR1L = 0x00;

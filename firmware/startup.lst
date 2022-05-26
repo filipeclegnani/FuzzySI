@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-                                                                                                           Tue May 24 21:31:34 2022
+                                                                                                           Thu May 26 02:21:02 2022
 
 
      1                           
@@ -72,15 +72,15 @@ Microchip Technology PIC Macro Assembler V1.33 build 59893
     66                           
     67                           ; jump to start
     68                           	goto	start & 0x7FF | (reset_vec & not 0x7FF)
-    69  0000  120A  118A  2812   
+    69  0000  120A  118A  2816   
     70                           
     71                           
     72                           	psect	init
     73                           start
-    74  0012                     	psect	end_init
+    74  0016                     	psect	end_init
     75                           	global start_initialization
     76                           	ljmp start_initialization	;jump to C runtime clear & initialization
-    77  0012  120A  118A  2815   
+    77  0016  120A  118A  2819   
     78                           ; Config register CONFIG @ 0x2007
     79                           ;	Watchdog Timer Enable bit
     80                           ;	WDTE = OFF, WDT disabled
@@ -108,9 +108,9 @@ Microchip Technology PIC Macro Assembler V1.33 build 59893
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                               Tue May 24 21:31:34 2022
+Symbol Table                                                                                               Thu May 26 02:21:02 2022
 
-               ___sp 0000                 _main 01ED                 start 0012               stackhi 0000  
-             stacklo 0000  start_initialization 0015             ___int_sp 0000             intlevel0 0000  
+               ___sp 0000                 _main 1611                 start 0016               stackhi 0000  
+             stacklo 0000  start_initialization 0019             ___int_sp 0000             intlevel0 0000  
            intlevel1 0000             intlevel2 0000             intlevel3 0000             intlevel4 0000  
            intlevel5 0000             reset_vec 0000  
