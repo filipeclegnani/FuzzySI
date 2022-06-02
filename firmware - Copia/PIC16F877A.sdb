@@ -147,13 +147,13 @@
 [v _LCD_Init LCD_Init `(v  1 e 0 0 ]
 "18 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
 [v _maximo maximo `(f  1 e 3 0 ]
-"27
+"25
 [v _minimo minimo `(f  1 e 3 0 ]
-"80
+"76
 [v _trapmf trapmf `(f  1 e 3 0 ]
-"99
+"94
 [v _ISR ISR `II(v  1 e 0 0 ]
-"314
+"295
 [v _main main `(v  1 e 0 0 ]
 "5 C:\Users\filip\programs\FuzzySI\firmware - Copia\pwm.c
 [v _PWM_Init PWM_Init `(v  1 e 0 0 ]
@@ -520,38 +520,38 @@
 [v _WR WR `VEb  1 e 0 @3169 ]
 "2761
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"39 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
+"35 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
 [v _buffer buffer `[7]uc  1 e 7 0 ]
-"41
+"37
 [v _receiveIndex receiveIndex `i  1 e 2 0 ]
-"43
+"39
 [v _pulsos pulsos `ui  1 e 2 0 ]
-"44
+"40
 [v _rpm rpm `ui  1 e 2 0 ]
-"46
+"42
 [v _contagens_tm0 contagens_tm0 `ui  1 e 2 0 ]
-"47
+"43
 [v _contador_rb6 contador_rb6 `ui  1 e 2 0 ]
-"48
+"44
 [v _tempo_rb6 tempo_rb6 `ui  1 e 2 0 ]
-"50
+"46
 [v _setpoint setpoint `ui  1 e 2 0 ]
-"51
+"47
 [v _erro_atual erro_atual `i  1 e 2 0 ]
-"52
+"48
 [v _erro_anterior erro_anterior `i  1 e 2 0 ]
-"55
+"51
 [v _rBaixo rBaixo `[16]f  1 e 48 0 ]
-"56
+"52
 [v _rMedio rMedio `[16]f  1 e 48 0 ]
-"57
+"53
 [v _rGrande rGrande `[16]f  1 e 48 0 ]
-"59
+"55
 [v _pwm pwm `ui  1 e 2 0 ]
-"314
+"295
 [v _main main `(v  1 e 0 0 ]
 {
-"359
+"342
 } 0
 "6 C:\Users\filip\programs\FuzzySI\firmware - Copia\usart.c
 [v _USART_Init USART_Init `(v  1 e 0 0 ]
@@ -603,34 +603,34 @@
 [v PWM_DutyCycle1@valor valor `i  1 p 2 0 ]
 "94
 } 0
-"99 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
+"94 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
 [v _ISR ISR `II(v  1 e 0 0 ]
 {
-"235
+"218
 [v ISR@a_213 a `i  1 a 2 22 ]
-"215
+"201
 [v ISR@a_212 a `i  1 a 2 20 ]
-"195
+"183
 [v ISR@a_211 a `i  1 a 2 18 ]
-"176
-[v ISR@a a `i  1 a 2 16 ]
-"252
-[v ISR@a_216 a `i  1 a 2 30 ]
 "165
+[v ISR@a a `i  1 a 2 16 ]
+"234
+[v ISR@a_216 a `i  1 a 2 30 ]
+"155
 [v ISR@x x `f  1 a 3 34 ]
-"166
+"156
 [v ISR@rule rule `f  1 a 3 27 ]
-"250
+"232
 [v ISR@total_area total_area `f  1 a 3 24 ]
-"251
+"233
 [v ISR@soma soma `f  1 a 3 13 ]
-"275
+"253
 [v ISR@reajuste reajuste `f  1 a 3 6 ]
-"146
+"136
 [v ISR@rpmAux rpmAux `i  1 a 2 32 ]
-"164
+"154
 [v ISR@delta delta `i  1 a 2 11 ]
-"311
+"292
 } 0
 "20 C:\Users\filip\programs\FuzzySI\firmware - Copia\timers.c
 [v i1_TIMER0_Set TIMER0_Set `(v  1 e 0 0 ]
@@ -647,18 +647,18 @@
 [v i1PWM_DutyCycle2@valor valor `i  1 p 2 0 ]
 "100
 } 0
-"80 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
+"76 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
 [v _trapmf trapmf `(f  1 e 3 0 ]
 {
-"82
+"77
 [v trapmf@ua ua `f  1 a 3 47 ]
-"80
+"76
 [v trapmf@x x `f  1 p 3 32 ]
 [v trapmf@a a `f  1 p 3 35 ]
 [v trapmf@b b `f  1 p 3 38 ]
 [v trapmf@c c `f  1 p 3 41 ]
 [v trapmf@d d `f  1 p 3 44 ]
-"96
+"91
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
@@ -692,19 +692,19 @@
 [v ___ftadd@f2 f2 `f  1 p 3 6 ]
 "148
 } 0
-"27 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
+"25 C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c
 [v _minimo minimo `(f  1 e 3 0 ]
 {
 [v minimo@a a `f  1 p 3 6 ]
 [v minimo@b b `f  1 p 3 9 ]
-"34
+"30
 } 0
 "18
 [v _maximo maximo `(f  1 e 3 0 ]
 {
 [v maximo@a a `f  1 p 3 12 ]
 [v maximo@b b `f  1 p 3 15 ]
-"25
+"23
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]

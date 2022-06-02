@@ -4,7 +4,7 @@ Linker command line:
 
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+PIC16F877A.sym --cmf=PIC16F877A.cmf -z -Q16F877A \
-  -oC:\Users\filip\AppData\Local\Temp\sad0.6 -MPIC16F877A.map -E1 -ver=XC8 \
+  -oC:\Users\filip\AppData\Local\Temp\s6tk.6 -MPIC16F877A.map -E1 -ver=XC8 \
   -ASTACK=0DAh-0efh -pstack=STACK -ACONST=00h-0FFhx32 -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -AENTRY=00h-0FFhx32 -ASTRING=00h-0FFhx32 \
   -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
@@ -749,7 +749,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 314 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
+		line 295 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -996,7 +996,7 @@ Total ram usage:        4 bytes
 
  *************** function _ISR *****************
  Defined at:
-		line 99 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
+		line 94 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1115,7 +1115,7 @@ Total ram usage:        4 bytes
 
  *************** function _trapmf *****************
  Defined at:
-		line 80 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
+		line 76 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
  Parameters:    Size  Location     Type
   x               3   32[BANK0 ] float 
   a               3   35[BANK0 ] float 
@@ -1251,7 +1251,7 @@ Total ram usage:       13 bytes
 
  *************** function _minimo *****************
  Defined at:
-		line 27 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
+		line 25 in file "C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c"
  Parameters:    Size  Location     Type
   a               3    6[BANK0 ] float 
   b               3    9[BANK0 ] float 
