@@ -41,7 +41,7 @@ I2C_Stop	C:\Users\filip\programs\FuzzySI\firmware\i2c.c	92;"	f	line:92	signature
 I2C_Stop	C:\Users\filip\programs\FuzzySI\firmware\i2c.h	11;"	p	line:11	signature:(void)
 I2C_Write	C:\Users\filip\programs\FuzzySI\firmware\i2c.c	70;"	f	line:70	signature:(unsigned char Byte)
 I2C_Write	C:\Users\filip\programs\FuzzySI\firmware\i2c.h	9;"	p	line:9	signature:(unsigned char)
-ISR	C:\Users\filip\programs\FuzzySI\firmware\main.c	233;"	f	line:233	signature:(void)
+ISR	C:\Users\filip\programs\FuzzySI\firmware\main.c	199;"	f	line:199	signature:(void)
 LCDBus::PORTD	C:\Users\filip\programs\FuzzySI\firmware\lcd.c	5;"	d	line:5	file:
 LCDBus::PORTD	C:\Users\filip\programs\FuzzySI\firmware\lcd.h	7;"	d	line:7
 LCD_Clear	C:\Users\filip\programs\FuzzySI\firmware\lcd.c	71;"	f	line:71
@@ -93,29 +93,27 @@ USART_WriteString	C:\Users\filip\programs\FuzzySI\firmware\usart.c	52;"	f	line:5
 USART_WriteString	C:\Users\filip\programs\FuzzySI\firmware\usart.h	8;"	p	line:8	signature:(const char *)
 _XTAL_FREQ::18432000	C:\Users\filip\programs\FuzzySI\firmware\config.h	20;"	d	line:20
 a	C:\Users\filip\programs\FuzzySI\firmware\eeprom.c	60;"	l	line:60
+buf	C:\Users\filip\programs\FuzzySI\firmware\main.c	112;"	l	line:112
 byte	C:\Users\filip\programs\FuzzySI\firmware\usart.c	65;"	l	line:65
 contagens_tm0	C:\Users\filip\programs\FuzzySI\firmware\main.c	29;"	v	line:29
 erro_anterior	C:\Users\filip\programs\FuzzySI\firmware\main.c	32;"	v	line:32
 erro_atual	C:\Users\filip\programs\FuzzySI\firmware\main.c	31;"	v	line:31
-fuzy	C:\Users\filip\programs\FuzzySI\firmware\main.c	63;"	f	line:63
-main	C:\Users\filip\programs\FuzzySI\firmware\main.c	314;"	f	line:314	signature:(void)
+fuzy	C:\Users\filip\programs\FuzzySI\firmware\main.c	61;"	f	line:61
+main	C:\Users\filip\programs\FuzzySI\firmware\main.c	280;"	f	line:280	signature:(void)
 max_val::(a,b)(((a)>(b))?(a):(b))	C:\Users\filip\programs\FuzzySI\firmware\main.c	19;"	d	line:19	file:
 min_val::(a,b)(((a)<(b))?(a):(b))	C:\Users\filip\programs\FuzzySI\firmware\main.c	18;"	d	line:18	file:
 pulsos	C:\Users\filip\programs\FuzzySI\firmware\main.c	27;"	v	line:27
 pwm	C:\Users\filip\programs\FuzzySI\firmware\main.c	34;"	v	line:34
-reajuste	C:\Users\filip\programs\FuzzySI\firmware\main.c	217;"	l	line:217
-reajusteAlto	C:\Users\filip\programs\FuzzySI\firmware\main.c	64;"	l	line:64
-reajusteBaixo	C:\Users\filip\programs\FuzzySI\firmware\main.c	66;"	l	line:66
-reajusteMedio	C:\Users\filip\programs\FuzzySI\firmware\main.c	65;"	l	line:65
+reajuste	C:\Users\filip\programs\FuzzySI\firmware\main.c	184;"	l	line:184
 rpm	C:\Users\filip\programs\FuzzySI\firmware\main.c	28;"	v	line:28
-rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	106;"	l	line:106
-rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	169;"	l	line:169
-rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	67;"	l	line:67
+rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	147;"	l	line:147
+rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	62;"	l	line:62
+rule	C:\Users\filip\programs\FuzzySI\firmware\main.c	96;"	l	line:96
 setpoint	C:\Users\filip\programs\FuzzySI\firmware\main.c	30;"	v	line:30
-soma	C:\Users\filip\programs\FuzzySI\firmware\main.c	193;"	l	line:193
-total_area	C:\Users\filip\programs\FuzzySI\firmware\main.c	192;"	l	line:192
-trapmf	C:\Users\filip\programs\FuzzySI\firmware\main.c	42;"	f	line:42	signature:(float x, float a, float b, float c, float d)
-ua	C:\Users\filip\programs\FuzzySI\firmware\main.c	44;"	l	line:44
+soma	C:\Users\filip\programs\FuzzySI\firmware\main.c	66;"	l	line:66
+total_area	C:\Users\filip\programs\FuzzySI\firmware\main.c	65;"	l	line:65
+trapmf	C:\Users\filip\programs\FuzzySI\firmware\main.c	40;"	f	line:40	signature:(float x, float a, float b, float c, float d)
+ua	C:\Users\filip\programs\FuzzySI\firmware\main.c	42;"	l	line:42
 variacao	C:\Users\filip\programs\FuzzySI\firmware\main.c	33;"	v	line:33
-x	C:\Users\filip\programs\FuzzySI\firmware\main.c	68;"	l	line:68
-y	C:\Users\filip\programs\FuzzySI\firmware\main.c	69;"	l	line:69
+x	C:\Users\filip\programs\FuzzySI\firmware\main.c	63;"	l	line:63
+y	C:\Users\filip\programs\FuzzySI\firmware\main.c	64;"	l	line:64
