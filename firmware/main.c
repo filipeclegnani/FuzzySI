@@ -1,131 +1,198 @@
-#define PASSO_PWM 100
-#define MIN(a,b) (((a) < (b)) ? (a) : (b))
-#define MAX(a,b) (((a) > (b)) ? (a) : (b))
-#define FUZZY_AND(a,b) (((a) < (b)) ? (a) : (b))
-#define FUZZY_OR(a,b) (((a) > (b)) ? (a) : (b))
-
-// Declaraï¿½ï¿½o das configuraï¿½ï¿½es e funcionalidades do PIC.
 #include "config.h"
 
 // Declaraï¿½ï¿½o das bibliotecas padrï¿½o da linguagem C.
 #include <stdio.h>
-#include <stdlib.h> // comando ftoa().
+//#include <stdlib.h> // comando ftoa().
 
 // Declaraï¿½ï¿½o das bibliotecas com as configuraï¿½ï¿½es e funcionalidades do PIC.
 #include "usart.h"
-#include "adc.h"
+//#include "adc.h"
 #include "timers.h"
-#include "lcd.h"
-#include "i2c.h"
-#include "spi.h"
-#include "eeprom.h"
+//#include "lcd.h"
+//#include "i2c.h"
+//#include "spi.h"
+//#include "eeprom.h"
 #include "pwm.h"
 
+
+#define min_val(a,b) (((a)<(b))?(a):(b))
+#define max_val(a,b) (((a)>(b))?(a):(b))
+
 // Variï¿½veis Globais de Controle.
-unsigned short ADCResult = 0;
-float temp_lida = 0;
 
 // Configuraï¿½ï¿½es para formataï¿½ï¿½o de dados de saï¿½da.
-unsigned char display[10];
 
-int receiveIndex = 0;
 
-int status = 0;
+
 unsigned int pulsos = 0;
 unsigned int rpm = 0;
-
-int ligado = 1;
-
 unsigned int contagens_tm0 = 0;
-unsigned int contador_rb6 = 0;
-unsigned int tempo_rb6 = 0;
-
 unsigned int setpoint = 3308;
-
 int erro_atual = 0;
+int erro_anterior = 0;
+int variacao = 0;
+int pwm = 0;
+	
+	
+//---------------------------------------------------------------------
 
-
-
-
-void clearDisplay(){
-	display[0] = 0;
-	display[1] = 0;
-	display[2] = 0;
-	display[3] = 0;
-	display[4] = 0;
-	display[5] = 0;
-	display[6] = 0;
-	display[7] = 0;
-	display[8] = 0;
-	display[9] = 0;
-}	
-
-
-
-
-float triangular(float x, float a, float b, float c)
+// Função Trapezoidal
+float trapmf(float x, float a, float b, float c, float d)
 {
-	float ua = 0;
+    float ua = 0;
 
-	if (x <= a)
-		ua = 0;
-	else if ((a < x) && (x <= b))
-		ua = ((x - a) / (b - a));
-	else if ((b < x) && (x <= c))
-		ua = ((x - c) / (b - c));
-	else if (x > c)
-		ua = 0;
+    if (x <= a)
+        ua = 0;
+    else if ((a < x) && (x <= b))
+        ua = ((x - a) / (b - a));
+    else if ((b <= x) && (x <= c))
+        ua = 1;
+    else if ((c < x) && (x <= d))
+        ua = ((d - x) / (d - c));
+    else if (x > d)
+        ua = 0;
 
-	return (ua);
+    return(ua);
 }
 
 //---------------------------------------------------------------------
 
-float trapezoidal(float x, float a, float b, float c, float d)
-{
-	float ua = 0;
 
-	if (x <= a)
-		ua = 0;
-	else if ((a < x) && (x <= b))
-		ua = ((x - a) / (b - a));
-	else if ((b <= x) && (x <= c))
-		ua = 1;
-	else if ((c < x) && (x <= d))
-		ua = ((d - x) / (d - c));
-	else if (x > d)
-		ua = 0;
+void fuzy(){
+	float rule = 0.0;
+	int x = 0;
+	float y = 0;
+	int total_area = 0;
+	int soma = 0;
 
-	return (ua);
-}
+	// 1ª regra - se a proximidade é alta então o ajuste é baixo
+	if (erro_atual <= 100)
+	{
+		// Fuzzificar as entradas.
+		
+		// Aplicação dos operadores Fuzzy.
+		rule = trapmf(erro_atual,-1,0,1,100);
 
-void fuzzy(){
-	// fuzzyfica 	
-	float aceleraM = trapezoidal(erro_atual, -4000, -4300, -6000, -6000);
-	float acelera  = trapezoidal(erro_atual, -80, -200, -3900, -4200);
-	float mantem   = triangular (erro_atual, -100, -0, 100);
-	float freia    = trapezoidal(erro_atual, 80, 200, 3900, 4200);
-	float freiaM   = trapezoidal(erro_atual, 4000, 4300, 6000, 6000);
-	// operador OR(max), Implicação e Agragação
-	float maior = MAX(MAX(MAX(MAX(	// seleciona o maior número
-		freiaM>.1?.1:freiaM,		// maxiomo 0.1
-		freia>.25?.25:freia),		// maximo .25
-		mantem>0.5?0.5:mantem),		// maximo .5
-		acelera>.75?.75:acelera),	// maximo .75
-		aceleraM);					// maximo 1
-	// 
-	// 
-	// Defuzzyficacao
-	PWM_DutyCycle2((int)(maior*1023));/*
-	LCD_Clear();
-	LCD_Cursor(0, 0);
-	clearDisplay();
-	itoa((int)(erro_atual), display, 10);
-	LCD_WriteString(display);
-	LCD_Cursor(1, 0);
-	clearDisplay();
-	itoa((int)(maior*1023), display, 10);
-	LCD_WriteString(display);*/
+		// Aplicação do Método de Implicação (valores mínimos).
+		x=0;
+		y=0;
+		for (int a=0; a<=15; a++)
+		{
+			y = trapmf(x,-1,0,0,5);
+				
+			total_area = (int)(total_area + (y >= rule)?rule:y);
+			soma = soma + x*(y >= rule)?rule:y;
+			x++;
+		}
+	}
+
+	x = 0;
+	rule = 0.0f;
+	// 2ª regra - se o erro e a variação é baixa então o ajuste é baixo
+	if (erro_atual >= 100 && erro_atual <= 1000 && variacao < 200)
+	{
+		// Fuzzificar as entradas.
+		// Aplicação dos operadores Fuzzy.
+		float rule = max_val(trapmf(erro_atual,-1,0,800,1500),trapmf(variacao,-1,0,1,200));
+
+		 // Aplicação do Método de Implicação (valores mínimos).
+		x=0;
+
+		for (int a=0; a<=15; a++)
+		{
+			y = trapmf(x,2,5,5,10);
+				
+			total_area = (int)(total_area + (y >= rule)?rule:y);
+			soma = soma + x*(y >= rule)?rule:y;
+			x++;
+
+		}
+	}
+
+	char buf[10];
+	sprintf(buf,"%i", (int)(100*rule));
+	USART_WriteString(buf);
+	USART_WriteChar('\n');
+	x = 0;
+
+	// 3ª regra - se o erro e baixo e a variação é alta e então o ajuste é medio
+	if (erro_atual >= 100 && erro_atual <= 1000 && variacao >= 200)
+	{
+		// Fuzzificar as entradas.
+		// Aplicação dos operadores Fuzzy.
+		 rule = max_val(trapmf(erro_atual,50,800,800,1550),trapmf(variacao,200,500,2000,2001));
+
+
+		x=0;
+
+		for (int a=0; a<=15; a++)
+		{
+
+			y = trapmf(x,2,5,5,10);
+				
+			total_area = (int)(total_area + (y >= rule)?rule:y);
+			soma = soma + x*(y >= rule)?rule:y;
+			x++;
+		}
+	}
+
+	x = 0;
+
+	// 4ª regra - se o erro é alto então o ajuste é alto
+	if (erro_atual > 1001)
+	{
+		// Fuzzificar as entradas.
+
+		// Aplicação dos operadores Fuzzy.
+		float rule = trapmf(erro_atual, 1001,1500,2000,2001);
+
+		// Aplicação do Método de Implicação (valores mínimos).
+
+
+		for (int a=0; a<=15; a++)
+		{
+			y = trapmf(x,5,10,15,16);
+			total_area = (int)(total_area + (y >= rule)?rule:y);
+			soma = soma + x*(y >= rule)?rule:y;
+			x++;
+		}
+	}
+
+	// Aplicação do Método de Agregação.
+	/*for (int a=0; a<=15; a++)
+	{
+		if (a >= 0 && a <= 5)
+		{
+			total_area = total_area+reajusteBaixo[a];
+			soma = soma + (x*reajusteBaixo[a]);
+		}
+
+		if (a >= 5 && a <= 10)
+		{
+			total_area = total_area+reajusteMedio[a];
+			soma = soma + (x*reajusteMedio[a]);
+		}
+
+		if (a >= 10 && a <= 15)
+		{
+			total_area = total_area+reajusteAlto[a];
+			soma = soma + (x*reajusteAlto[a]);
+		}
+		x++;
+	}*/
+
+	float reajuste = 0.0f;
+	// Implicação dos antecedentes pelo consequente.
+	if(total_area!= 0){
+		reajuste = soma/(total_area);
+	}else{
+		reajuste = 0;
+	}	
+    // Cálculo da Centróide.
+	
+	pwm = (int)max_val(min_val(pwm + ((int) min_val(reajuste, erro_atual)) * (setpoint > rpm ? 1 : -1) * 1, 1023), 0);
+	PWM_DutyCycle2(pwm);
+
 }
 
 //-----------------------------------------------------------------------------
@@ -134,19 +201,15 @@ void interrupt ISR(void)
 	// Tratamento da interrupï¿½ï¿½o do buffer de recepï¿½ï¿½o.
 	if (PIR1bits.RCIF)
 	{
-
+		
+		setpoint = (USART_ReceiveChar() -48) *1000;
+		
 		// Flag de status da Interrupï¿½ï¿½o do buffer de recepï¿½ï¿½o da USART.
 		PIR1bits.RCIF = 0;
 	}
 
 	// Tratamento da interrupï¿½ï¿½o do conversor A/D.
-	if (PIR1bits.ADIF)
-	{
-		// Caso a interrupï¿½ï¿½o seja ativada a manipulaï¿½ï¿½o dos dados pode ser feita aqui!
-
-		// Limpa a flag da interrupï¿½ï¿½o do conversor A/D.
-		PIR1bits.ADIF = 0;
-	}
+	
 
 	// Tratamento da interrupï¿½ï¿½o do Timer0.
 	// Controle da Interrupï¿½ï¿½o do TIMER0.
@@ -161,7 +224,7 @@ void interrupt ISR(void)
 			// Variï¿½vel de controle/incremento do perï¿½odo de tempo.
 			contagens_tm0++;
 
-			// Variï¿½veis de controle (nï¿½vel alto).
+			// Variï¿is de controle (nï¿½vel alto).
 			PORTBbits.RB6 = 1;
 		}
 		else
@@ -171,11 +234,15 @@ void interrupt ISR(void)
 
 			// Cï¿½lculo das rotaï¿½ï¿½es por minuto.
 			pulsos = (TMR1H << 8) + TMR1L;
-			rpm = ((pulsos / 7.0) * 120);
+			rpm = (int)((pulsos / 7.0) * 120);
 
-
-			erro_atual = setpoint - rpm;
-			fuzzy();
+			variacao = erro_atual;
+			erro_atual = (setpoint - rpm);
+			erro_atual = erro_atual < 0 ? -erro_atual:erro_atual;
+			variacao = erro_atual - variacao;
+			variacao = variacao < 0 ? -variacao:variacao; 
+			
+			fuzy();
 
 
 			// Limpa registrador para nova contagem.
@@ -191,7 +258,7 @@ void interrupt ISR(void)
 	}
 
 	// Tratamento da interrupï¿½ï¿½o do Timer1.
-	if (PIR1bits.TMR1IF)
+	/*if (PIR1bits.TMR1IF)
 	{
 		// Caso a interrupï¿½ï¿½o seja ativada a manipulaï¿½ï¿½o dos dados pode ser feita aqui!
 
@@ -206,7 +273,7 @@ void interrupt ISR(void)
 
 		// Resetar a flag do SPI para uma nova contagem.
 		PIR1bits.SSPIF = 0;
-	}
+	}*/
 }
 
 //-----------------------------------------------------------------------------
@@ -231,9 +298,9 @@ void main(void)
 	// Inicializaï¿½ï¿½o dos perifï¿½ricos do microcontrolador.
 	USART_Init(115200); // Inicializaï¿½ï¿½o do mï¿½dulo USART.
 	TIMER0_Init();		// Inicializaï¿½ï¿½o do mï¿½dulo do Timer0.
-	ADC_Init();			// Inicializaï¿½ï¿½o do mï¿½dulo do conversor A/D.
+	//ADC_Init();			// Inicializaï¿½ï¿½o do mï¿½dulo do conversor A/D.
 	PWM_Init();			// 1.125khz, prescaler 16, 1024 passos.
-	LCD_Init();			// Inicializaï¿½ï¿½o do LCD.
+	//LCD_Init();			// Inicializaï¿½ï¿½o do LCD.
 
 	// Ativaï¿½ï¿½o das interrupï¿½ï¿½es do microcontrolador.
 	INTCONbits.PEIE = 1; // Habilita Interrupï¿½ï¿½o de Perifï¿½ricos do Microcontrolador.
@@ -244,9 +311,9 @@ void main(void)
 	// USART_WriteString("USART: 115.200bps\n\r");
 
 	// Rotinas do LCD.
-	LCD_Init();							 // Inicializaï¿½ï¿½o do LCD.
-	LCD_Cursor(0, 0);					 // Posicionamento da string na linha 0 e coluna 0;
-	LCD_WriteString("Inicializando..."); // Escrita da string no LCD.
+
+	//LCD_Cursor(0, 0);					 // Posicionamento da string na linha 0 e coluna 0;
+	//LCD_WriteString("Inicializando..."); // Escrita da string no LCD.
 
 	// Inicia os mï¿½dulos PWM desligados.
 	PWM_DutyCycle1(0);
@@ -262,19 +329,21 @@ void main(void)
 	while (1)
 	{
 		// Formata os dados de rotaï¿½ï¿½o para apresentaï¿½ï¿½o.
-		sprintf(display, "%04d", rpm);
+		//sprintf(display, "%04d", rpm);
+		//clearDisplay();
+		//itoa(rpm, display, 10);
 
 		// Apresenta as informaï¿½ï¿½es na USART.
 		// USART_WriteString(display);
 		// USART_WriteString("\n\r");
 
 		// Apresenta as informaï¿½ï¿½es no LCD.
-		LCD_Clear();
-		LCD_Cursor(0, 0);
-		LCD_WriteString("RPM: ");
-		LCD_Cursor(0, 6);
-		LCD_WriteString(display);
+		//LCD_Clear();
+		//LCD_Cursor(0, 0);
+		//LCD_WriteString("RPM: ");
+		//LCD_Cursor(0, 6);
+		//LCD_WriteString(display);
 
-		__delay_ms(200);
+		//__delay_ms(200);
 	}
 }

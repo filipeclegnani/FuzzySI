@@ -1,18 +1,18 @@
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\main.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.c
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\usart.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\config.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\adc.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\timers.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\lcd.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\i2c.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\eeprom.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\pwm.h
-C:\Users\FAPESC\Desktop\Projeto Padrão PIC16F877A(tacógrafo)\Código em C no MPLAB\spi.h
+C:\Users\filip\programs\FuzzySI\firmware\main.c
+C:\Users\filip\programs\FuzzySI\firmware\usart.c
+C:\Users\filip\programs\FuzzySI\firmware\adc.c
+C:\Users\filip\programs\FuzzySI\firmware\timers.c
+C:\Users\filip\programs\FuzzySI\firmware\lcd.c
+C:\Users\filip\programs\FuzzySI\firmware\i2c.c
+C:\Users\filip\programs\FuzzySI\firmware\eeprom.c
+C:\Users\filip\programs\FuzzySI\firmware\pwm.c
+C:\Users\filip\programs\FuzzySI\firmware\spi.c
+C:\Users\filip\programs\FuzzySI\firmware\usart.h
+C:\Users\filip\programs\FuzzySI\firmware\config.h
+C:\Users\filip\programs\FuzzySI\firmware\adc.h
+C:\Users\filip\programs\FuzzySI\firmware\timers.h
+C:\Users\filip\programs\FuzzySI\firmware\lcd.h
+C:\Users\filip\programs\FuzzySI\firmware\i2c.h
+C:\Users\filip\programs\FuzzySI\firmware\eeprom.h
+C:\Users\filip\programs\FuzzySI\firmware\pwm.h
+C:\Users\filip\programs\FuzzySI\firmware\spi.h
