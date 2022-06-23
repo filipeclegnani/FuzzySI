@@ -10,9 +10,7 @@ object AutoNormalization: TAutoNormalization
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 13
   object Chart1: TChart
     Left = 191
@@ -23,7 +21,7 @@ object AutoNormalization: TAutoNormalization
     Title.Font.Height = -16
     Title.Font.Style = [fsBold]
     Title.Text.Strings = (
-      'Controle de rota'#231#245'es')
+      'Controle de velocidade')
     BottomAxis.Automatic = False
     BottomAxis.AutomaticMaximum = False
     BottomAxis.Increment = 10.000000000000000000
@@ -35,8 +33,8 @@ object AutoNormalization: TAutoNormalization
     LeftAxis.AutomaticMaximum = False
     LeftAxis.AutomaticMinimum = False
     LeftAxis.AxisValuesFormat = '#,##0.0###'
-    LeftAxis.Maximum = 9900.000000000000000000
-    LeftAxis.Title.Caption = 'RPM'
+    LeftAxis.Maximum = 230.000000000000000000
+    LeftAxis.Title.Caption = 'KM/H'
     LeftAxis.Title.Font.Height = -16
     LeftAxis.Title.Font.Style = [fsBold]
     View3D = False
@@ -44,24 +42,45 @@ object AutoNormalization: TAutoNormalization
     Color = clWhite
     TabOrder = 0
     DefaultCanvas = 'TGDIPlusCanvas'
+    PrintMargins = (
+      15
+      22
+      15
+      22)
     ColorPaletteIndex = 13
     object Series1: TLineSeries
+      HoverElement = [heCurrent]
       Legend.Text = 'Medi'#231#227'o'
       LegendTitle = 'Medi'#231#227'o'
-      SeriesColor = clLime
+      SeriesColor = clNavy
       Brush.BackColor = clDefault
       LinePen.Width = 2
       Pointer.HorizSize = 3
       Pointer.InflateMargins = True
-      Pointer.Style = psCircle
+      Pointer.Style = psNothing
       Pointer.VertSize = 3
       Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
+      Data = {
+        021D000000000000000000000000000020000000000000000000000020000000
+        0000000000000000200000000000000000000000200000000000000000000000
+        2000000000000000000000002000000000000000000000002000000000000000
+        0000000020000000000000000000000020000000000000000000000020000000
+        0000000000000000200000000000000000000000200000000000000000000000
+        2000000000000000000000002000000000000000000000002000000000000000
+        0000000020000000000000000000000020000000000000000000000020000000
+        0000000000000000200000000000000000000000200000000000000000000000
+        2000000000000000000000002000000000000000000000002000000000000000
+        0000000020000000000000000000000020000000000000000000000020000000
+        0000000000000000200000000000000000000000200000000000000000FFFFFF
+        1F}
+      Detail = {0000000000}
     end
     object Series2: TLineSeries
+      HoverElement = [heCurrent]
       Legend.Text = 'Alvo'
       LegendTitle = 'Alvo'
       SeriesColor = clRed
@@ -69,7 +88,7 @@ object AutoNormalization: TAutoNormalization
       LinePen.Width = 2
       Pointer.HorizSize = 3
       Pointer.InflateMargins = True
-      Pointer.Style = psCircle
+      Pointer.Style = psNothing
       Pointer.VertSize = 3
       Pointer.Visible = True
       XValues.Name = 'X'
@@ -77,6 +96,14 @@ object AutoNormalization: TAutoNormalization
       YValues.Name = 'Y'
       YValues.Order = loNone
       Transparency = 61
+      Data = {
+        001A000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000000000}
     end
   end
   object Panel1: TPanel
@@ -106,6 +133,34 @@ object AutoNormalization: TAutoNormalization
       Width = 21
       Height = 13
       Caption = 'RPM'
+    end
+    object Label4: TLabel
+      Left = 40
+      Top = 200
+      Width = 31
+      Height = 13
+      Caption = 'Label4'
+    end
+    object Label5: TLabel
+      Left = 40
+      Top = 219
+      Width = 39
+      Height = 13
+      Caption = 'setpoint'
+    end
+    object Label6: TLabel
+      Left = 40
+      Top = 238
+      Width = 31
+      Height = 13
+      Caption = 'Label6'
+    end
+    object Label7: TLabel
+      Left = 40
+      Top = 257
+      Width = 31
+      Height = 13
+      Caption = 'Label7'
     end
     object BtClosePort: TButton
       Left = 16
@@ -168,6 +223,42 @@ object AutoNormalization: TAutoNormalization
       Caption = 'Ok'
       TabOrder = 5
       OnClick = OkClick
+    end
+    object Ativa: TButton
+      Left = 21
+      Top = 288
+      Width = 75
+      Height = 25
+      Caption = 'Ativa'
+      TabOrder = 6
+      OnClick = AtivaClick
+    end
+    object Res: TButton
+      Left = 21
+      Top = 319
+      Width = 75
+      Height = 25
+      Caption = 'Res +'
+      TabOrder = 7
+      OnClick = ResClick
+    end
+    object Set: TButton
+      Left = 21
+      Top = 350
+      Width = 75
+      Height = 25
+      Caption = 'Set -'
+      TabOrder = 8
+      OnClick = SetClick
+    end
+    object Freio: TButton
+      Left = 21
+      Top = 381
+      Width = 75
+      Height = 25
+      Caption = 'Freio'
+      TabOrder = 9
+      OnClick = FreioClick
     end
   end
 end

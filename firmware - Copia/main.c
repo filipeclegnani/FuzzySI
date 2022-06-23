@@ -32,18 +32,16 @@ float minimo(float a, float b) {
 // Variáveis Globais de Controle.
 
 // Configurações para formatação de dados de saída.
-unsigned char buffer[7];
-
-int receiveIndex = 0;
 
 unsigned int pulsos = 0;
 unsigned int rpm = 0;
+unsigned int kmph = 0;
 
 unsigned int contagens_tm0 = 0;
 unsigned int contador_rb6 = 0;
 unsigned int tempo_rb6 = 0;
 
-unsigned int setpoint = 5000;
+unsigned int setpoint = 7000;
 int erro_atual = 0;
 int erro_anterior = 0;
 
@@ -53,6 +51,12 @@ float rMedio[TAMANHO + 1];
 float rGrande[TAMANHO + 1];
 
 unsigned int pwm = 0;
+/*
+	aceitando = 0b00000001
+	ativo = 0b00000010
+*/
+unsigned char pilotoAtivo = 0;
+unsigned int velocidadeSetada = 7000;
 
 /*
 float trimf(float x, float a, float b, float c)
@@ -72,6 +76,42 @@ float trimf(float x, float a, float b, float c)
 }
 */
 
+void inicia(){
+	if(pilotoAtivo & 1){
+		pilotoAtivo = 0;
+	}else{
+		pilotoAtivo = 1;
+	}
+}	
+void res(){
+	if(pilotoAtivo == 3 && setpoint < 9000){
+		// iniciado, ativo e acima de 40
+		setpoint = setpoint + 41;
+		velocidadeSetada = setpoint;
+	}
+ 	if(pilotoAtivo == 1){
+  	// ativo
+  	pilotoAtivo = 3;
+  	setpoint = velocidadeSetada;
+  }	
+}	
+
+void set(){
+  	if(kmph > 40){
+	  	// acima de 40/h
+		if(pilotoAtivo == 3 && setpoint > 1640){
+			// iniciado, ativo e acima de 40
+			setpoint = setpoint - 41;
+			velocidadeSetada = setpoint;
+		}
+	  	if(pilotoAtivo == 1){
+		  	// ativa
+		  	pilotoAtivo = 3;
+	  		setpoint = velocidadeSetada;
+		}
+	}
+}	
+
 // Função Trapezoidal
 float trapmf(float x, float a, float b, float c, float d) {
   float ua = 0;
@@ -90,12 +130,85 @@ float trapmf(float x, float a, float b, float c, float d) {
   return (ua);
 }
 
+unsigned char buffer[9];
+void send()
+{
+
+  //Formata??o do Pacote de dados.
+  buffer[0] = '#';
+  buffer[1] = '$';
+  buffer[2] = ':';
+  
+  kmph = rpm/41;
+  // Medi??o
+  buffer[3] = (kmph >> 8);
+  buffer[4] = kmph;
+  kmph = setpoint/41;
+  buffer[5] = (kmph >> 8);
+  buffer[6] = kmph;
+  buffer[7] = pilotoAtivo;
+
+
+  unsigned char checksum = 0x00;
+  for (unsigned char index = 0; index < 8; index++)
+  {
+    USART_WriteChar(buffer[index]);
+    checksum ^= buffer[index];
+  }
+  buffer[8] = checksum;
+  USART_WriteChar(buffer[8]);
+}
+
+int receiveIndex = 0;
+char receivedBuffer[5];
+
 //-----------------------------------------------------------------------------
 void interrupt ISR(void) {
   // Tratamento da interrupção do buffer de recepção.
   if (PIR1bits.RCIF) {
-    setpoint = (USART_ReceiveChar() - 48) * 1000;
+    //setpoint = (USART_ReceiveChar() - 48) * 1000;
     // Flag de status da Interrupção do buffer de recepção da USART.
+    unsigned char byte = USART_ReceiveChar();
+		if (byte == '#')
+		{
+			receiveIndex = 0;
+		} else {
+			receiveIndex++;
+		}
+		receivedBuffer[receiveIndex] = byte;
+
+		if (receiveIndex == 6) {
+			receiveIndex = 0;
+			
+			if (receivedBuffer[1] == 'A' && receivedBuffer[2] == 'A' && receivedBuffer[3] == 'A') {
+				send();
+			} else {
+				if (receivedBuffer[0] == '#' && receivedBuffer[1] == '$' && receivedBuffer[2] == ':') {
+					unsigned char checksum = 0x00;
+					for (unsigned char index = 0; index < 6; index++) {
+						checksum ^= receivedBuffer[index];
+					}
+					if (receivedBuffer[6] == checksum) {
+						if(receivedBuffer[3] == 'M'){
+							setpoint = ((receivedBuffer[4] << 8) + (receivedBuffer[5])) * 41;
+						}
+						if(receivedBuffer[3] == 'I'){
+							inicia();
+						}
+						if(receivedBuffer[3] == 'S'){
+							set();
+						}
+						if(receivedBuffer[3] == 'R'){
+							res();
+						}
+						if(receivedBuffer[3] == 'F'){
+	  						pilotoAtivo = pilotoAtivo & 0b11111101;
+						}	
+						
+					}
+				}
+			}
+		}
     PIR1bits.RCIF = 0;
   }
 
@@ -134,20 +247,7 @@ void interrupt ISR(void) {
       TMR1H = 0x00;
 
       int rpmAux = rpm;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      rpmAux /= 10;
-      USART_WriteChar((rpmAux % 10) + 48);
-      USART_WriteChar('\n');
+
 
       erro_anterior = erro_atual;
       erro_atual = minimo(abs(setpoint - rpm), 2000);
@@ -254,7 +354,8 @@ void interrupt ISR(void) {
       if (total_area != 0) {
         reajuste = soma / total_area;
       }
-
+		
+	  //kmph = rpm / 41;
       // vAnterior + erro * (sentido) entre um maximo de 1023 e um minimo de 0
       pwm = maximo(minimo(pwm + ((int)minimo(reajuste, erro_atual)) * (setpoint > rpm ? 1 : -1), 1023), 0);
 
@@ -288,11 +389,12 @@ void interrupt ISR(void) {
   }*/
 }
 
+
 //-----------------------------------------------------------------------------
 void main(void) {
   TRISA = 0b00000001;  // Configuração dos canais analógicos do PORTA.
   PORTA = 0b00000001;  // Inicialização dos canais analógicos do PORTA.
-  TRISB = 0b00000000;  // Configuração das entradas/saídas do PORTB (RB4 e RB5 PWM).
+  TRISB = 0b00001111;  // Configuração das entradas/saídas do PORTB (RB4 e RB5 PWM).
   PORTB = 0b00000000;  // Inicialização das entradas/saídas do PORTB.
   TRISC = 0b10000001;  // Configuração do PORTC - pinos RC0(TIMER), RC7(RX) e
                        // RC6(TX).
@@ -307,6 +409,7 @@ void main(void) {
   TMR1L = 0x00;
   TMR1H = 0x00;
 
+
   // Inicialização dos periféricos do microcontrolador.
   USART_Init(115200);  // Inicialização do módulo USART.
   TIMER0_Init();       // Inicialização do módulo do Timer0.
@@ -316,13 +419,12 @@ void main(void) {
   // LCD_Init();				// Inicialização do LCD.
 
   // Ativação das interrupções do microcontrolador.
-  INTCONbits.PEIE =
-      1;               // Habilita Interrupção de Periféricos do Microcontrolador.
+  INTCONbits.PEIE = 1;               // Habilita Interrupção de Periféricos do Microcontrolador.
   INTCONbits.GIE = 1;  // Habilita Interrupção Global.
 
   // Inicia os módulos PWM desligados.
   PWM_DutyCycle1(0);
-  PWM_DutyCycle2(0);
+  PWM_DutyCycle2(10);
 
   // Seta o TIMER 0 para estouro de 1 em 1ms.
   TIMER0_Set(238);
@@ -332,6 +434,30 @@ void main(void) {
 
   // Laço principal do firmware.
   while (1) {
+	  
+	  if(PORTBbits.RB0 == 0){	// inicia
+	  	while(PORTBbits.RB0 == 0);
+	  	inicia();	
+	  }
+	  if(PORTBbits.RB1 == 0){	// res +
+	  	while(PORTBbits.RB1 == 0);
+	  	__delay_ms(20);
+	  	while(PORTBbits.RB1 == 0);
+	  	res();
+	  }
+	  if(PORTBbits.RB2 == 0){	// set -
+	  	while(PORTBbits.RB2 == 0);
+	  	__delay_ms(20);
+	  	while(PORTBbits.RB2 == 0);
+	  	set();
+		
+	  }
+	  if(PORTBbits.RB3 == 0){	// mata/freio
+	  	while(PORTBbits.RB3 == 0);
+	  	__delay_ms(20);
+	  	while(PORTBbits.RB3 == 0);
+	  	pilotoAtivo = pilotoAtivo & 0b11111101;
+	  }
     __delay_ms(200);
   }
 }
