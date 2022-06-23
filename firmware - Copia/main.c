@@ -85,7 +85,7 @@ void inicia(){
 }	
 void res(){
 	if(pilotoAtivo == 3 && setpoint < 9000){
-		// iniciado, ativo e acima de 40
+		// iniciado, ativo e abaixo de 220
 		setpoint = setpoint + 41;
 		velocidadeSetada = setpoint;
 	}
@@ -141,10 +141,10 @@ void send()
   
   kmph = rpm/41;
   // Medi??o
-  buffer[3] = (kmph >> 8);
+  buffer[3] = (kmph >> 8);	// obtido
   buffer[4] = kmph;
   kmph = setpoint/41;
-  buffer[5] = (kmph >> 8);
+  buffer[5] = (kmph >> 8);	// alvo
   buffer[6] = kmph;
   buffer[7] = pilotoAtivo;
 
@@ -416,7 +416,7 @@ void main(void) {
   // ADC_Init();				// Inicialização do módulo do
   // conversor A/D.
   PWM_Init();  // 1.125khz, prescaler 16, 1024 passos.
-  // LCD_Init();				// Inicialização do LCD.
+  LCD_Init();				// Inicialização do LCD.
 
   // Ativação das interrupções do microcontrolador.
   INTCONbits.PEIE = 1;               // Habilita Interrupção de Periféricos do Microcontrolador.
@@ -424,7 +424,7 @@ void main(void) {
 
   // Inicia os módulos PWM desligados.
   PWM_DutyCycle1(0);
-  PWM_DutyCycle2(10);
+  PWM_DutyCycle2(100);
 
   // Seta o TIMER 0 para estouro de 1 em 1ms.
   TIMER0_Set(238);
@@ -450,14 +450,24 @@ void main(void) {
 	  	__delay_ms(20);
 	  	while(PORTBbits.RB2 == 0);
 	  	set();
-		
 	  }
 	  if(PORTBbits.RB3 == 0){	// mata/freio
 	  	while(PORTBbits.RB3 == 0);
 	  	__delay_ms(20);
-	  	while(PORTBbits.RB3 == 0);
 	  	pilotoAtivo = pilotoAtivo & 0b11111101;
 	  }
+	  LCD_Clear();//LCD_WriteString
+	  LCD_Cursor(0,0);
+		if(pilotoAtivo & 1){
+			if(pilotoAtivo & 2){
+				LCD_WriteString("At");
+			}else{	
+				LCD_WriteString("Disp");
+			}
+		}else{
+			LCD_WriteString("Iind");
+		}
+	  
     __delay_ms(200);
   }
 }

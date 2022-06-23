@@ -186,6 +186,7 @@ void __fastcall Thread::Execute() {
 			PortaSerial->WriteABuffer("A", 1);
 			PortaSerial->WriteABuffer("A", 1);
 			PortaSerial->WriteABuffer("A", 1);
+			PortaSerial->WriteABuffer("A", 1);
 			// Instante de tempo para receber resposta do mestre.
 			Sleep(30);
 			// Armazena em buffer a resposta enviada pelo mestre com as temperaturas.
@@ -205,10 +206,19 @@ void __fastcall Thread::Execute() {
 					rpm = valor;
 					valor = (buffer1[5] << 8) + (buffer1[6]);
 					rpmAlvo = valor;
-					Lab4->Caption = rpm;
-					Lab5->Caption = rpmAlvo;
-					Lab6->Caption = buffer1[7] & 1;
-					Lab7->Caption = buffer1[7] & 3;
+
+					Lab4->Caption << "Velocidade: " << rpm;
+					Lab5->Caption << "Alvo: " << rpmAlvo;
+					if(buffer1[7] & 1){
+						Lab6->Caption = "Piloto disponível";
+					}else{
+							Lab6->Caption = "Piloto indisponível";
+					}
+					if(buffer1[7] & 3){
+						Lab6->Caption = "Piloto ativo";
+					}else{
+							Lab6->Caption = "Piloto inativo";
+					}
 
 					// ------- Gráfico de sinais ------------------------------------------
 					// Verificação do fim do gráfico.

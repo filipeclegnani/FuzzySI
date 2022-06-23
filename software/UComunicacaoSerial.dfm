@@ -130,9 +130,9 @@ object AutoNormalization: TAutoNormalization
     object Label3: TLabel
       Left = 16
       Top = 477
-      Width = 21
+      Width = 24
       Height = 13
-      Caption = 'RPM'
+      Caption = 'Km/h'
     end
     object Label4: TLabel
       Left = 40

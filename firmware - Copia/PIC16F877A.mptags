@@ -41,7 +41,7 @@ I2C_Stop	C:\Users\filip\programs\FuzzySI\firmware - Copia\i2c.c	92;"	f	line:92	s
 I2C_Stop	C:\Users\filip\programs\FuzzySI\firmware - Copia\i2c.h	11;"	p	line:11	signature:(void)
 I2C_Write	C:\Users\filip\programs\FuzzySI\firmware - Copia\i2c.c	70;"	f	line:70	signature:(unsigned char Byte)
 I2C_Write	C:\Users\filip\programs\FuzzySI\firmware - Copia\i2c.h	9;"	p	line:9	signature:(unsigned char)
-ISR	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	123;"	f	line:123	signature:(void)
+ISR	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	166;"	f	line:166	signature:(void)
 LCDBus::PORTD	C:\Users\filip\programs\FuzzySI\firmware - Copia\lcd.c	5;"	d	line:5	file:
 LCDBus::PORTD	C:\Users\filip\programs\FuzzySI\firmware - Copia\lcd.h	7;"	d	line:7
 LCD_Clear	C:\Users\filip\programs\FuzzySI\firmware - Copia\lcd.c	71;"	f	line:71
@@ -94,36 +94,41 @@ USART_WriteString	C:\Users\filip\programs\FuzzySI\firmware - Copia\usart.c	52;"	
 USART_WriteString	C:\Users\filip\programs\FuzzySI\firmware - Copia\usart.h	8;"	p	line:8	signature:(const char *)
 _XTAL_FREQ::18432000	C:\Users\filip\programs\FuzzySI\firmware - Copia\config.h	20;"	d	line:20
 a	C:\Users\filip\programs\FuzzySI\firmware - Copia\eeprom.c	60;"	l	line:60
-buffer	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	91;"	v	line:91
-byte	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	128;"	l	line:128
+buffer	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	133;"	v	line:133
+byte	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	171;"	l	line:171
 byte	C:\Users\filip\programs\FuzzySI\firmware - Copia\usart.c	65;"	l	line:65
-checksum	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	109;"	l	line:109
-checksum	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	144;"	l	line:144
+checksum	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	152;"	l	line:152
+checksum	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	187;"	l	line:187
 contador_rb6	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	41;"	v	line:41
 contagens_tm0	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	40;"	v	line:40
-delta	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	196;"	l	line:196
+delta	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	254;"	l	line:254
 erro_anterior	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	46;"	v	line:46
 erro_atual	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	45;"	v	line:45
+inicia	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	79;"	f	line:79
 kmph	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	38;"	v	line:38
-main	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	335;"	f	line:335	signature:(void)
+main	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	394;"	f	line:394	signature:(void)
 maximo	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	18;"	f	line:18	signature:(float a, float b)
 minimo	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	25;"	f	line:25	signature:(float a, float b)
+pilotoAtivo	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	58;"	v	line:58
 pulsos	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	36;"	v	line:36
 pwm	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	53;"	v	line:53
 rBaixo	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	49;"	v	line:49
 rGrande	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	51;"	v	line:51
 rMedio	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	50;"	v	line:50
-reajuste	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	295;"	l	line:295
-receiveIndex	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	119;"	v	line:119
-receivedBuffer	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	120;"	v	line:120
+reajuste	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	353;"	l	line:353
+receiveIndex	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	162;"	v	line:162
+receivedBuffer	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	163;"	v	line:163
+res	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	86;"	f	line:86
 rpm	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	37;"	v	line:37
-rpmAux	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	191;"	l	line:191
-rule	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	198;"	l	line:198
-send	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	92;"	f	line:92
+rpmAux	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	249;"	l	line:249
+rule	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	256;"	l	line:256
+send	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	134;"	f	line:134
+set	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	99;"	f	line:99
 setpoint	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	44;"	v	line:44
-soma	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	275;"	l	line:275
+soma	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	333;"	l	line:333
 tempo_rb6	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	42;"	v	line:42
-total_area	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	274;"	l	line:274
-trapmf	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	74;"	f	line:74	signature:(float x, float a, float b, float c, float d)
-ua	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	75;"	l	line:75
-x	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	197;"	l	line:197
+total_area	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	332;"	l	line:332
+trapmf	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	116;"	f	line:116	signature:(float x, float a, float b, float c, float d)
+ua	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	117;"	l	line:117
+velocidadeSetada	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	59;"	v	line:59
+x	C:\Users\filip\programs\FuzzySI\firmware - Copia\main.c	255;"	l	line:255
