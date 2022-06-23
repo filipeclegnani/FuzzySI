@@ -1,0 +1,342 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#include <vector>
+
+#pragma hdrstop
+
+#include "UFuzzy.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TForm1 *Form1;
+
+//---------------------------------------------------------------------
+
+// Função Triangular
+float trimf(float x, float a, float b, float c)
+{
+    float ua = 0;
+
+    if (x <= a)
+        ua = 0;
+    else if ((a < x) && (x <= b))
+        ua = ((x - a) / (b - a));
+    else if ((b < x) && (x <= c))
+        ua = ((x - c) / (b - c));
+    else if (x > c)
+        ua = 0;
+
+    return(ua);
+}
+
+//---------------------------------------------------------------------
+
+// Função Trapezoidal
+float trapmf(float x, float a, float b, float c, float d)
+{
+    float ua = 0;
+
+    if (x <= a)
+        ua = 0;
+    else if ((a < x) && (x <= b))
+        ua = ((x - a) / (b - a));
+    else if ((b <= x) && (x <= c))
+        ua = 1;
+    else if ((c < x) && (x <= d))
+        ua = ((d - x) / (d - c));
+    else if (x > d)
+        ua = 0;
+
+    return(ua);
+}
+
+//---------------------------------------------------------------------
+
+float min_val(float a, float b)
+{
+    if (a < b)
+        return a;
+    else
+        return b;
+}
+
+//---------------------------------------------------------------------
+
+float max_val(float a, float b)
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+
+//---------------------------------------------------------------------
+
+int max_grafico = 11;
+float indice = -10;
+float curva = 0.1;
+
+std::vector <float> tip_cheap(31);
+std::vector <float> tip_average(31);
+std::vector <float> tip_gorgeous(31);
+std::vector <float> tip(31);
+
+std::vector <float> service_poor;
+std::vector <float> service_good;
+std::vector <float> service_excellent;
+
+std::vector <float> food_rancid;
+std::vector <float> food_delicious;
+
+float x=0;
+float y=0;
+
+// Variáveis Fuzzy.
+float fiService = 0;
+float fiFood    = 0;
+float foTip     = 0;
+float fop_rule1 = 0;
+float fop_rule2 = 0;
+float fop_rule3 = 0;
+
+// Variáveis de auxilio ao cálculo da centróide.
+float sum = 0;
+float total_area = 0;
+float gorjeta = 0;
+
+// Entradas para o sistema.
+float service = 0;
+float food = 0;
+
+//---------------------------------------------------------------------------
+
+void Fuzzy()
+{
+
+	// 1ª regra - If service is poor or food is rancid, tip is cheap
+	if ((service >= 0 && service <= 4) || (food >= 0 && food <= 3))
+	{
+		// Fuzzificar as entradas.
+		fiService = trapmf(service,-1,0,1,4);
+		fiFood    = trapmf(food,-1,0,1,3);
+
+		// Aplicação dos operadores Fuzzy.
+		fop_rule1 = max_val(fiService,fiFood);
+
+		// Aplicação do Método de Implicação (valores mínimos).
+		x=0;
+		y=0;
+		for (int a=0; a<=30; a++)
+		{
+			y = trimf(x,0,5,10);
+
+			if (y >= fop_rule1)
+			{
+				tip_cheap.at(a) = fop_rule1;
+			}
+			else
+			{
+				tip_cheap.at(a) = y;
+			}
+
+			printf("%.4f %.4f\n", x, tip_cheap.at(a));
+
+			x=x+1;
+		}
+	}
+
+
+
+
+	// 2ª regra - If service is good, tip is average
+	if ((service >= 1) && (service <= 9))
+	{
+		// Fuzzificar as entradas.
+		fiService = trimf(service,1,5,9);
+
+		// Aplicação dos operadores Fuzzy.
+		fop_rule2 = max_val(fiService,0);
+
+		 // Aplicação do Método de Implicação (valores mínimos).
+		x=0;
+		y=0;
+		for (int a=0; a<=30; a++)
+		{
+			y = trimf(x,10,15,20);
+
+			if (y >= fop_rule2)
+			{
+				tip_average.at(a) = fop_rule2;
+			}
+			else
+			{
+				tip_average.at(a) = y;
+			}
+
+			printf("%.4f %.4f\n", x, tip_average.at(a));
+
+			x=x+1;
+		}
+	}
+
+
+
+
+	// 3ª regra - If service is excellent or food is delicious, tip is generous
+	if ((service >= 6 && service <= 10) || (food >= 7 && food <= 10))
+	{
+		// Fuzzificar as entradas.
+		fiService = trapmf(service,6,9,10,10);
+		fiFood    = trapmf(food,7,9,10,10);
+
+		// Aplicação dos operadores Fuzzy.
+		fop_rule3 = max_val(fiService,fiFood);
+
+		// Aplicação do Método de Implicação (valores mínimos).
+		x=0;
+		y=0;
+		for (int a=0; a<=30; a++)
+		{
+			y = trimf(x,20,25,30);
+
+			if (y >= fop_rule3)
+			{
+				tip_gorgeous.at(a) = fop_rule3;
+			}
+			else
+			{
+				tip_gorgeous.at(a) = y;
+			}
+
+			printf("%.4f %.4f\n", x, tip_gorgeous.at(a));
+
+			x=x+1;
+		}
+	}
+
+
+	// Aplicação do Método de Agregação.
+	for (int a=0; a<=30; a++)
+	{
+		if (a >= 0 && a <= 10)
+		{
+			tip.at(a) = tip_cheap.at(a);
+		}
+
+		if (a >= 10 && a <= 20)
+		{
+			tip.at(a) = tip_average.at(a);
+		}
+
+		if (a >= 20 && a <= 30)
+		{
+			tip.at(a) = tip_gorgeous.at(a);
+		}
+	}
+
+
+	// Implicação dos antecedentes pelo consequente.
+	x = 0;
+	total_area = 0;
+	sum = 0;
+	for (int a=0; a<=30; a++)
+	{
+		printf("%.4f %.4f\n", x, tip.at(a));
+
+		total_area = total_area + tip.at(a);
+		sum = sum + (x * tip.at(a));
+
+		x=x+1;
+	}
+
+	gorjeta = sum/total_area;
+	Form1->Label1->Caption = FloatToStrF(gorjeta,ffFixed,10,1);
+
+	for (int a=0; a<=30; a++)
+	{
+		Form1->Chart3->Series[0]->YValues->Value[a] = tip.at(a);
+	}
+
+	Form1->Chart3->Refresh();
+
+
+}
+
+
+//---------------------------------------------------------------------------
+
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+
+
+
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+	// Expande o gráfico para comportar a quantidade de amostras contidas em max_tela.
+	for (unsigned int a = 0; a <= 10; a++)
+	{
+		Chart1->Series[0]->AddY(0);
+		Chart1->Series[1]->AddY(0);
+		Chart1->Series[2]->AddY(0);
+		Chart2->Series[0]->AddY(0);
+		Chart2->Series[1]->AddY(0);
+	}
+	for (unsigned int a = 0; a <= 30; a++)
+	{
+		Chart3->Series[0]->AddY(0);
+		//Chart3->Series[1]->AddY(0);
+		//Chart3->Series[2]->AddY(0);
+	}
+
+	// Atualiza o chart.
+	Chart1->Refresh();
+	Chart2->Refresh();
+	Chart3->Refresh();
+
+	x=0;
+	for (int a=0; a<=10; a++)
+	{
+		Chart1->Series[0]->YValues->Value[a] = trapmf(x,-1,0,1,4);
+		Chart1->Series[1]->YValues->Value[a] = trimf(x,1,5,9);
+		Chart1->Series[2]->YValues->Value[a] = trapmf(x,6,9,10,10);
+		x=x+1;
+	}
+
+	x=0;
+	for (int a=0; a<=10; a++)
+	{
+		Chart2->Series[0]->YValues->Value[a] = trapmf(x,-1,0,1,3);
+		Chart2->Series[1]->YValues->Value[a] = trapmf(x,7,9,10,10);
+		x=x+1;
+	}
+
+	x=0;
+	for (int a=0; a<=30; a++)
+	{
+		//Chart3->Series[0]->YValues->Value[a] = trimf(x,0,5,10);
+		//Chart3->Series[1]->YValues->Value[a] = trimf(x,10,15,20);
+		//Chart3->Series[2]->YValues->Value[a] = trimf(x,20,25,30);
+		x=x+1;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::tbServiceChange(TObject *Sender)
+{
+	service = tbService->Position;
+	Label5->Caption = tbService->Position;
+	Fuzzy();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::tbFoodChange(TObject *Sender)
+{
+	food = tbFood->Position;
+	Label6->Caption = tbFood->Position;
+	Fuzzy();
+}
+//---------------------------------------------------------------------------
