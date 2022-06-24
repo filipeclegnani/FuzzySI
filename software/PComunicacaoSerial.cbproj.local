@@ -3,12 +3,12 @@
 	<Transactions>
     <Transaction>2021/03/11 16:27:03.000.175,=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2021/03/11 16:27:03.000.285,=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2021/03/11 16:41:04.000.485,C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.h=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>2021/03/11 16:41:04.000.485,C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.cpp=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2021/03/11 16:41:04.000.485,C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.dfm=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/03/11 16:41:12.000.746,C:\Meus Arquivos\Desenvolvimento\2021\Project1PCH1.h=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2021/03/11 16:41:20.000.403,C:\Meus Arquivos\Desenvolvimento\2021\PComunicacaoSerial.cbproj=C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
-    <Transaction>2021/03/11 16:41:20.000.403,C:\Meus Arquivos\Desenvolvimento\2021\PComunicacaoSerialPCH1.h=C:\Meus Arquivos\Desenvolvimento\2021\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/11 16:41:04.000.485,C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.dfm</Transaction>
+    <Transaction>2021/03/11 16:41:04.000.485,C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.h</Transaction>
+    <Transaction>2021/03/11 16:41:04.000.485,C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Meus Arquivos\Desenvolvimento\2021\UComunicacaoSerial.cpp</Transaction>
+    <Transaction>2021/03/11 16:41:12.000.746,C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Meus Arquivos\Desenvolvimento\2021\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/11 16:41:20.000.403,C:\Meus Arquivos\Desenvolvimento\2021\Project1PCH1.h=C:\Meus Arquivos\Desenvolvimento\2021\PComunicacaoSerialPCH1.h</Transaction>
+    <Transaction>2021/03/11 16:41:20.000.403,C:\Users\FAPESC\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Meus Arquivos\Desenvolvimento\2021\PComunicacaoSerial.cbproj</Transaction>
     <Transaction>2021/03/11 16:44:18.000.084,=C:\Meus Arquivos\Desenvolvimento\2021\PortaSerial\SerialComPort.cpp</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">

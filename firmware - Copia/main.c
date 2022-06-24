@@ -41,7 +41,7 @@ unsigned int contagens_tm0 = 0;
 unsigned int contador_rb6 = 0;
 unsigned int tempo_rb6 = 0;
 
-unsigned int setpoint = 7000;
+unsigned int setpoint = 1000;
 int erro_atual = 0;
 int erro_anterior = 0;
 
@@ -56,7 +56,7 @@ unsigned int pwm = 0;
 	ativo = 0b00000010
 */
 unsigned char pilotoAtivo = 0;
-unsigned int velocidadeSetada = 7000;
+unsigned int velocidadeSetada = 1000;
 
 /*
 float trimf(float x, float a, float b, float c)
@@ -178,6 +178,8 @@ void interrupt ISR(void) {
 		receivedBuffer[receiveIndex] = byte;
 
 		if (receiveIndex == 6) {
+			LCD_Cursor(1,1);
+			LCD_WriteData('P');
 			receiveIndex = 0;
 			
 			if (receivedBuffer[1] == 'A' && receivedBuffer[2] == 'A' && receivedBuffer[3] == 'A') {
@@ -249,6 +251,7 @@ void interrupt ISR(void) {
       int rpmAux = rpm;
 
 
+       
       erro_anterior = erro_atual;
       erro_atual = minimo(abs(setpoint - rpm), 2000);
       int delta = maximo(minimo(abs(erro_atual - erro_anterior), 1000), 1);
@@ -256,15 +259,18 @@ void interrupt ISR(void) {
       float rule = 0;
 
       // 1ª regra - Se a proximidade é alta, então o reajuste é baixo
-      if (erro_atual <= 100) {
+      if (erro_atual <= 100)
+      {
         // Fuzzificar as entradas e aplicação dos operadores
 
         rule = trapmf(erro_atual, -1, 0, 1, 100);
 
         x = 0;
-        for (int a = 0; a <= TAMANHO; a++) {
+        for (int a = 0; a <= TAMANHO; a++)
+        {
           rBaixo[a] = trapmf(x, -1, 0, 0, 5);
-          if (rBaixo[a] >= rule) {
+          if (rBaixo[a] >= rule)
+          {
             rBaixo[a] = rule;
           }
 
@@ -272,17 +278,19 @@ void interrupt ISR(void) {
         }
       }
 
-      // 2ª regra - Se a proximidade é média e está em ajuste baixo, o reajuste
-      // é baixo
-      if (erro_atual >= 100 && erro_atual <= 1001 && delta <= 200) {
+      // 2ª regra - Se a proximidade é média e está em ajuste baixo, o reajuste é baixo
+      if (erro_atual >= 100 && erro_atual <= 1001 && delta <= 200)
+      {
         // Fuzzificar as entradas e aplicação dos operadores
-        rule = trapmf(erro_atual, 50, 800, 800, 1550) *
-               (1 - trapmf(delta, -1, 0, 1, 200));
+        rule = trapmf(erro_atual, 50, 800, 800, 1550) * (1 - trapmf(delta, -1, 0, 1, 200));
 
         x = 0;
-        for (int a = 0; a <= TAMANHO; a++) {
+        for (int a = 0; a <= TAMANHO; a++)
+        {
+
           rBaixo[a] = trapmf(x, 2, 5, 5, 10);
-          if (rBaixo[a] >= rule) {
+          if (rBaixo[a] >= rule)
+          {
             rBaixo[a] = rule;
           }
 
@@ -290,18 +298,19 @@ void interrupt ISR(void) {
         }
       }
 
-      // 3ª regra - Se a proximidade é média e está em ajuste alto, o reajuste é
-      // médio
-      if (erro_atual >= 100 && erro_atual <= 1001 && delta >= 201) {
+      // 3ª regra - Se a proximidade é média e está em ajuste alto, o reajuste é médio
+      if (erro_atual >= 100 && erro_atual <= 1001 && delta >= 201)
+      {
         // Fuzzificar as entradas e aplicação dos operadores
-        rule = trapmf(erro_atual, 50, 800, 800, 1550) *
-               trapmf(delta, 200, 500, 2000, 2001);
+        rule = trapmf(erro_atual, 50, 800, 800, 1550) * trapmf(delta, 200, 500, 2000, 2001);
 
         x = 0;
-        for (int a = 0; a <= TAMANHO; a++) {
+        for (int a = 0; a <= TAMANHO; a++)
+        {
           rMedio[a] = trapmf(x, 2, 5, 5, 10);
 
-          if (rMedio[a] >= rule) {
+          if (rMedio[a] >= rule)
+          {
             rMedio[a] = rule;
           }
 
@@ -310,15 +319,18 @@ void interrupt ISR(void) {
       }
 
       // 4ª regra - Se a proximidade é baixa, então o reajuste é alto
-      if (erro_atual >= 1001) {
+      if (erro_atual >= 1001)
+      {
         // Fuzzificar as entradas e aplicação dos operadores
         rule = trapmf(erro_atual, 1001, 1500, 2000, 2001);
 
         x = 0;
-        for (int a = 0; a <= TAMANHO; a++) {
+        for (int a = 0; a <= TAMANHO; a++)
+        {
           rGrande[a] = trapmf(x, 5, 10, 15, 16);
 
-          if (rGrande[a] >= rule) {
+          if (rGrande[a] >= rule)
+          {
             rGrande[a] = rule;
           }
 
@@ -326,23 +338,26 @@ void interrupt ISR(void) {
         }
       }
 
-      // Aplicação do Método de agregação e implicação dos antecedentes pelo
-      // consequente.
+      // Aplicação do Método de agregação e implicação dos antecedentes pelo consequente.
       x = 0;
       float total_area = 0;
       float soma = 0;
-      for (int a = 0; a <= TAMANHO; a++) {
-        if (a >= 0 && a <= 5) {
+      for (int a = 0; a <= TAMANHO; a++)
+      {
+        if (a >= 0 && a <= 5)
+        {
           total_area += rBaixo[a];
           soma += (x * rBaixo[a]);
         }
 
-        if (a >= 5 && a <= 10) {
+        if (a >= 5 && a <= 10)
+        {
           total_area += rMedio[a];
           soma += (x * rMedio[a]);
         }
 
-        if (a >= 10 && a <= TAMANHO) {
+        if (a >= 10 && a <= TAMANHO)
+        {
           total_area += rGrande[a];
           soma += (x * rGrande[a]);
         }
@@ -351,13 +366,17 @@ void interrupt ISR(void) {
 
       // Cálculo da Centróide.
       float reajuste = 0;
-      if (total_area != 0) {
+      if (total_area != 0)
+      {
         reajuste = soma / total_area;
       }
-		
-	  //kmph = rpm / 41;
+
+	int auxiliar = -1;
+	if(setpoint > rpm){
+		auxiliar = 1;
+	}	
       // vAnterior + erro * (sentido) entre um maximo de 1023 e um minimo de 0
-      pwm = maximo(minimo(pwm + ((int)minimo(reajuste, erro_atual)) * (setpoint > rpm ? 1 : -1), 1023), 0);
+      pwm = maximo(minimo(pwm + ((int)minimo(reajuste, erro_atual)) * (auxiliar), 1023), 0);
 
       PWM_DutyCycle2(pwm);
 
@@ -456,8 +475,8 @@ void main(void) {
 	  	__delay_ms(20);
 	  	pilotoAtivo = pilotoAtivo & 0b11111101;
 	  }
-	  LCD_Clear();//LCD_WriteString
-	  LCD_Cursor(0,0);
+	  //LCD_Clear();//LCD_WriteString
+	  /*LCD_Cursor(0,0);
 		if(pilotoAtivo & 1){
 			if(pilotoAtivo & 2){
 				LCD_WriteString("At");
@@ -466,7 +485,7 @@ void main(void) {
 			}
 		}else{
 			LCD_WriteString("Iind");
-		}
+		}*/
 	  
     __delay_ms(200);
   }

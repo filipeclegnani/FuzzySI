@@ -10,7 +10,9 @@ object AutoNormalization: TAutoNormalization
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  OldCreateOrder = True
   OnCreate = FormCreate
+  PixelsPerInch = 96
   TextHeight = 13
   object Chart1: TChart
     Left = 191
@@ -49,7 +51,6 @@ object AutoNormalization: TAutoNormalization
       22)
     ColorPaletteIndex = 13
     object Series1: TLineSeries
-      HoverElement = [heCurrent]
       Legend.Text = 'Medi'#231#227'o'
       LegendTitle = 'Medi'#231#227'o'
       SeriesColor = clNavy
@@ -80,7 +81,6 @@ object AutoNormalization: TAutoNormalization
       Detail = {0000000000}
     end
     object Series2: TLineSeries
-      HoverElement = [heCurrent]
       Legend.Text = 'Alvo'
       LegendTitle = 'Alvo'
       SeriesColor = clRed
